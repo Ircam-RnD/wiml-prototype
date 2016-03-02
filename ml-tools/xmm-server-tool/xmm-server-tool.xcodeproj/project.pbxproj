@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3188C36F1C844FA000E2E200 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C36E1C844FA000E2E200 /* main.cpp */; };
+		3188C39E1C84542E00E2E200 /* gmmServerTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */; };
+		3188C39F1C84542E00E2E200 /* xmmMongoClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C39C1C84542E00E2E200 /* xmmMongoClient.cpp */; };
+		3188C3B31C8455B500E2E200 /* xmmPhrase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3AF1C8455B500E2E200 /* xmmPhrase.cpp */; };
+		3188C3B41C8455B500E2E200 /* xmmTrainingSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3B11C8455B500E2E200 /* xmmTrainingSet.cpp */; };
+		3188C3BD1C8455C800E2E200 /* xmmModelSharedParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3B91C8455C800E2E200 /* xmmModelSharedParameters.cpp */; };
+		3188C3BE1C8455C800E2E200 /* xmmModelSingleClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3BB1C8455C800E2E200 /* xmmModelSingleClass.cpp */; };
+		3188C3C11C8455D700E2E200 /* xmmGaussianDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3BF1C8455D700E2E200 /* xmmGaussianDistribution.cpp */; };
+		3188C3C91C8455E600E2E200 /* xmmAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3C21C8455E600E2E200 /* xmmAttribute.cpp */; };
+		3188C3CA1C8455E600E2E200 /* xmmJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3C61C8455E600E2E200 /* xmmJson.cpp */; };
+		3188C3D01C8455F600E2E200 /* xmmKMeans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3CB1C8455F600E2E200 /* xmmKMeans.cpp */; };
+		3188C3D11C8455F600E2E200 /* xmmKMeansParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3CD1C8455F600E2E200 /* xmmKMeansParameters.cpp */; };
+		3188C3D91C84560500E2E200 /* xmmHierarchicalHmm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3D21C84560500E2E200 /* xmmHierarchicalHmm.cpp */; };
+		3188C3DA1C84560500E2E200 /* xmmHmmParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3D41C84560500E2E200 /* xmmHmmParameters.cpp */; };
+		3188C3DB1C84560500E2E200 /* xmmHmmSingleClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3D71C84560500E2E200 /* xmmHmmSingleClass.cpp */; };
+		3188C3E21C84561500E2E200 /* xmmGmm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3DC1C84561500E2E200 /* xmmGmm.cpp */; };
+		3188C3E31C84561500E2E200 /* xmmGmmParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3DE1C84561500E2E200 /* xmmGmmParameters.cpp */; };
+		3188C3E41C84561500E2E200 /* xmmGmmSingleClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3E01C84561500E2E200 /* xmmGmmSingleClass.cpp */; };
+		3188C3F81C84566900E2E200 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3F31C84566900E2E200 /* json_reader.cpp */; };
+		3188C3F91C84566900E2E200 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3F51C84566900E2E200 /* json_value.cpp */; };
+		3188C3FA1C84566900E2E200 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C3F71C84566900E2E200 /* json_writer.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3188C3691C844FA000E2E200 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3188C36B1C844FA000E2E200 /* xmm-server-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "xmm-server-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3188C36E1C844FA000E2E200 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gmmServerTool.cpp; sourceTree = "<group>"; };
+		3188C39B1C84542E00E2E200 /* gmmServerTool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gmmServerTool.hpp; sourceTree = "<group>"; };
+		3188C39C1C84542E00E2E200 /* xmmMongoClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xmmMongoClient.cpp; sourceTree = "<group>"; };
+		3188C39D1C84542E00E2E200 /* xmmMongoClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xmmMongoClient.hpp; sourceTree = "<group>"; };
+		3188C3AF1C8455B500E2E200 /* xmmPhrase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmPhrase.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/trainingset/xmmPhrase.cpp"; sourceTree = "<group>"; };
+		3188C3B01C8455B500E2E200 /* xmmPhrase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmPhrase.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/trainingset/xmmPhrase.hpp"; sourceTree = "<group>"; };
+		3188C3B11C8455B500E2E200 /* xmmTrainingSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmTrainingSet.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/trainingset/xmmTrainingSet.cpp"; sourceTree = "<group>"; };
+		3188C3B21C8455B500E2E200 /* xmmTrainingSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmTrainingSet.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/trainingset/xmmTrainingSet.hpp"; sourceTree = "<group>"; };
+		3188C3B51C8455C800E2E200 /* xmmModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModel.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModel.hpp"; sourceTree = "<group>"; };
+		3188C3B61C8455C800E2E200 /* xmmModelConfiguration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModelConfiguration.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelConfiguration.hpp"; sourceTree = "<group>"; };
+		3188C3B71C8455C800E2E200 /* xmmModelParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModelParameters.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelParameters.hpp"; sourceTree = "<group>"; };
+		3188C3B81C8455C800E2E200 /* xmmModelResults.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModelResults.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelResults.hpp"; sourceTree = "<group>"; };
+		3188C3B91C8455C800E2E200 /* xmmModelSharedParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmModelSharedParameters.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelSharedParameters.cpp"; sourceTree = "<group>"; };
+		3188C3BA1C8455C800E2E200 /* xmmModelSharedParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModelSharedParameters.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelSharedParameters.hpp"; sourceTree = "<group>"; };
+		3188C3BB1C8455C800E2E200 /* xmmModelSingleClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmModelSingleClass.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelSingleClass.cpp"; sourceTree = "<group>"; };
+		3188C3BC1C8455C800E2E200 /* xmmModelSingleClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmModelSingleClass.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/model/xmmModelSingleClass.hpp"; sourceTree = "<group>"; };
+		3188C3BF1C8455D700E2E200 /* xmmGaussianDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmGaussianDistribution.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/distributions/xmmGaussianDistribution.cpp"; sourceTree = "<group>"; };
+		3188C3C01C8455D700E2E200 /* xmmGaussianDistribution.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmGaussianDistribution.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/distributions/xmmGaussianDistribution.hpp"; sourceTree = "<group>"; };
+		3188C3C21C8455E600E2E200 /* xmmAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmAttribute.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmAttribute.cpp"; sourceTree = "<group>"; };
+		3188C3C31C8455E600E2E200 /* xmmAttribute.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmAttribute.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmAttribute.hpp"; sourceTree = "<group>"; };
+		3188C3C41C8455E600E2E200 /* xmmCircularbuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmCircularbuffer.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmCircularbuffer.hpp"; sourceTree = "<group>"; };
+		3188C3C51C8455E600E2E200 /* xmmEvents.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmEvents.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmEvents.hpp"; sourceTree = "<group>"; };
+		3188C3C61C8455E600E2E200 /* xmmJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmJson.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmJson.cpp"; sourceTree = "<group>"; };
+		3188C3C71C8455E600E2E200 /* xmmJson.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmJson.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmJson.hpp"; sourceTree = "<group>"; };
+		3188C3C81C8455E600E2E200 /* xmmMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmMatrix.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/core/common/xmmMatrix.hpp"; sourceTree = "<group>"; };
+		3188C3CB1C8455F600E2E200 /* xmmKMeans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmKMeans.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/kmeans/xmmKMeans.cpp"; sourceTree = "<group>"; };
+		3188C3CC1C8455F600E2E200 /* xmmKMeans.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmKMeans.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/kmeans/xmmKMeans.hpp"; sourceTree = "<group>"; };
+		3188C3CD1C8455F600E2E200 /* xmmKMeansParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmKMeansParameters.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/kmeans/xmmKMeansParameters.cpp"; sourceTree = "<group>"; };
+		3188C3CE1C8455F600E2E200 /* xmmKMeansParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmKMeansParameters.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/kmeans/xmmKMeansParameters.hpp"; sourceTree = "<group>"; };
+		3188C3CF1C8455F600E2E200 /* xmmKMeansResults.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmKMeansResults.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/kmeans/xmmKMeansResults.hpp"; sourceTree = "<group>"; };
+		3188C3D21C84560500E2E200 /* xmmHierarchicalHmm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmHierarchicalHmm.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHierarchicalHmm.cpp"; sourceTree = "<group>"; };
+		3188C3D31C84560500E2E200 /* xmmHierarchicalHmm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHierarchicalHmm.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHierarchicalHmm.hpp"; sourceTree = "<group>"; };
+		3188C3D41C84560500E2E200 /* xmmHmmParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmHmmParameters.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHmmParameters.cpp"; sourceTree = "<group>"; };
+		3188C3D51C84560500E2E200 /* xmmHmmParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHmmParameters.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHmmParameters.hpp"; sourceTree = "<group>"; };
+		3188C3D61C84560500E2E200 /* xmmHmmResults.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHmmResults.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHmmResults.hpp"; sourceTree = "<group>"; };
+		3188C3D71C84560500E2E200 /* xmmHmmSingleClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmHmmSingleClass.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHmmSingleClass.cpp"; sourceTree = "<group>"; };
+		3188C3D81C84560500E2E200 /* xmmHmmSingleClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHmmSingleClass.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/hmm/xmmHmmSingleClass.hpp"; sourceTree = "<group>"; };
+		3188C3DC1C84561500E2E200 /* xmmGmm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmGmm.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmm.cpp"; sourceTree = "<group>"; };
+		3188C3DD1C84561500E2E200 /* xmmGmm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmGmm.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmm.hpp"; sourceTree = "<group>"; };
+		3188C3DE1C84561500E2E200 /* xmmGmmParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmGmmParameters.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmmParameters.cpp"; sourceTree = "<group>"; };
+		3188C3DF1C84561500E2E200 /* xmmGmmParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmGmmParameters.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmmParameters.hpp"; sourceTree = "<group>"; };
+		3188C3E01C84561500E2E200 /* xmmGmmSingleClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmGmmSingleClass.cpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmmSingleClass.cpp"; sourceTree = "<group>"; };
+		3188C3E11C84561500E2E200 /* xmmGmmSingleClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmGmmSingleClass.hpp; path = "../../../../git-repositories/josephlarralde/xmm/src/models/gmm/xmmGmmSingleClass.hpp"; sourceTree = "<group>"; };
+		3188C3E51C84562500E2E200 /* xmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmm.h; path = "../../../../git-repositories/josephlarralde/xmm/src/xmm.h"; sourceTree = "<group>"; };
+		3188C3E91C84565100E2E200 /* assertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = assertions.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/assertions.h"; sourceTree = "<group>"; };
+		3188C3EA1C84565100E2E200 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = autolink.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/autolink.h"; sourceTree = "<group>"; };
+		3188C3EB1C84565100E2E200 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/config.h"; sourceTree = "<group>"; };
+		3188C3EC1C84565100E2E200 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/features.h"; sourceTree = "<group>"; };
+		3188C3ED1C84565100E2E200 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forwards.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/forwards.h"; sourceTree = "<group>"; };
+		3188C3EE1C84565100E2E200 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/json.h"; sourceTree = "<group>"; };
+		3188C3EF1C84565100E2E200 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/reader.h"; sourceTree = "<group>"; };
+		3188C3F01C84565100E2E200 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/value.h"; sourceTree = "<group>"; };
+		3188C3F11C84565100E2E200 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/version.h"; sourceTree = "<group>"; };
+		3188C3F21C84565100E2E200 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/include/writer.h"; sourceTree = "<group>"; };
+		3188C3F31C84566900E2E200 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_reader.cpp; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/src/json_reader.cpp"; sourceTree = "<group>"; };
+		3188C3F41C84566900E2E200 /* json_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_tool.h; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/src/json_tool.h"; sourceTree = "<group>"; };
+		3188C3F51C84566900E2E200 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_value.cpp; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/src/json_value.cpp"; sourceTree = "<group>"; };
+		3188C3F61C84566900E2E200 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_valueiterator.inl; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/src/json_valueiterator.inl"; sourceTree = "<group>"; };
+		3188C3F71C84566900E2E200 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_writer.cpp; path = "../../../../git-repositories/josephlarralde/xmm/dependencies/jsoncpp/src/json_writer.cpp"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3188C3681C844FA000E2E200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3188C3621C844FA000E2E200 = {
+			isa = PBXGroup;
+			children = (
+				3188C3E61C84562900E2E200 /* jsoncpp */,
+				3188C3A41C8454CD00E2E200 /* xmm */,
+				3188C36D1C844FA000E2E200 /* xmm-server-tool */,
+				3188C36C1C844FA000E2E200 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3188C36C1C844FA000E2E200 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3188C36B1C844FA000E2E200 /* xmm-server-tool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3188C36D1C844FA000E2E200 /* xmm-server-tool */ = {
+			isa = PBXGroup;
+			children = (
+				3188C36E1C844FA000E2E200 /* main.cpp */,
+				3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */,
+				3188C39B1C84542E00E2E200 /* gmmServerTool.hpp */,
+				3188C39C1C84542E00E2E200 /* xmmMongoClient.cpp */,
+				3188C39D1C84542E00E2E200 /* xmmMongoClient.hpp */,
+			);
+			path = "xmm-server-tool";
+			sourceTree = "<group>";
+		};
+		3188C3A41C8454CD00E2E200 /* xmm */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3A71C8454F400E2E200 /* src */,
+			);
+			name = xmm;
+			sourceTree = "<group>";
+		};
+		3188C3A51C8454DA00E2E200 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3AE1C84559F00E2E200 /* kmeans */,
+				3188C3AD1C84559700E2E200 /* hmm */,
+				3188C3AC1C84559100E2E200 /* gmm */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		3188C3A61C8454E900E2E200 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3AB1C84558200E2E200 /* trainingset */,
+				3188C3AA1C84557700E2E200 /* model */,
+				3188C3A91C84556F00E2E200 /* distributions */,
+				3188C3A81C84556200E2E200 /* common */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
+		3188C3A71C8454F400E2E200 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3E51C84562500E2E200 /* xmm.h */,
+				3188C3A61C8454E900E2E200 /* core */,
+				3188C3A51C8454DA00E2E200 /* models */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		3188C3A81C84556200E2E200 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3C21C8455E600E2E200 /* xmmAttribute.cpp */,
+				3188C3C31C8455E600E2E200 /* xmmAttribute.hpp */,
+				3188C3C41C8455E600E2E200 /* xmmCircularbuffer.hpp */,
+				3188C3C51C8455E600E2E200 /* xmmEvents.hpp */,
+				3188C3C61C8455E600E2E200 /* xmmJson.cpp */,
+				3188C3C71C8455E600E2E200 /* xmmJson.hpp */,
+				3188C3C81C8455E600E2E200 /* xmmMatrix.hpp */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		3188C3A91C84556F00E2E200 /* distributions */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3BF1C8455D700E2E200 /* xmmGaussianDistribution.cpp */,
+				3188C3C01C8455D700E2E200 /* xmmGaussianDistribution.hpp */,
+			);
+			name = distributions;
+			sourceTree = "<group>";
+		};
+		3188C3AA1C84557700E2E200 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3B51C8455C800E2E200 /* xmmModel.hpp */,
+				3188C3B61C8455C800E2E200 /* xmmModelConfiguration.hpp */,
+				3188C3B71C8455C800E2E200 /* xmmModelParameters.hpp */,
+				3188C3B81C8455C800E2E200 /* xmmModelResults.hpp */,
+				3188C3B91C8455C800E2E200 /* xmmModelSharedParameters.cpp */,
+				3188C3BA1C8455C800E2E200 /* xmmModelSharedParameters.hpp */,
+				3188C3BB1C8455C800E2E200 /* xmmModelSingleClass.cpp */,
+				3188C3BC1C8455C800E2E200 /* xmmModelSingleClass.hpp */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		3188C3AB1C84558200E2E200 /* trainingset */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3AF1C8455B500E2E200 /* xmmPhrase.cpp */,
+				3188C3B01C8455B500E2E200 /* xmmPhrase.hpp */,
+				3188C3B11C8455B500E2E200 /* xmmTrainingSet.cpp */,
+				3188C3B21C8455B500E2E200 /* xmmTrainingSet.hpp */,
+			);
+			name = trainingset;
+			sourceTree = "<group>";
+		};
+		3188C3AC1C84559100E2E200 /* gmm */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3DC1C84561500E2E200 /* xmmGmm.cpp */,
+				3188C3DD1C84561500E2E200 /* xmmGmm.hpp */,
+				3188C3DE1C84561500E2E200 /* xmmGmmParameters.cpp */,
+				3188C3DF1C84561500E2E200 /* xmmGmmParameters.hpp */,
+				3188C3E01C84561500E2E200 /* xmmGmmSingleClass.cpp */,
+				3188C3E11C84561500E2E200 /* xmmGmmSingleClass.hpp */,
+			);
+			name = gmm;
+			sourceTree = "<group>";
+		};
+		3188C3AD1C84559700E2E200 /* hmm */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3D21C84560500E2E200 /* xmmHierarchicalHmm.cpp */,
+				3188C3D31C84560500E2E200 /* xmmHierarchicalHmm.hpp */,
+				3188C3D41C84560500E2E200 /* xmmHmmParameters.cpp */,
+				3188C3D51C84560500E2E200 /* xmmHmmParameters.hpp */,
+				3188C3D61C84560500E2E200 /* xmmHmmResults.hpp */,
+				3188C3D71C84560500E2E200 /* xmmHmmSingleClass.cpp */,
+				3188C3D81C84560500E2E200 /* xmmHmmSingleClass.hpp */,
+			);
+			name = hmm;
+			sourceTree = "<group>";
+		};
+		3188C3AE1C84559F00E2E200 /* kmeans */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3CB1C8455F600E2E200 /* xmmKMeans.cpp */,
+				3188C3CC1C8455F600E2E200 /* xmmKMeans.hpp */,
+				3188C3CD1C8455F600E2E200 /* xmmKMeansParameters.cpp */,
+				3188C3CE1C8455F600E2E200 /* xmmKMeansParameters.hpp */,
+				3188C3CF1C8455F600E2E200 /* xmmKMeansResults.hpp */,
+			);
+			name = kmeans;
+			sourceTree = "<group>";
+		};
+		3188C3E61C84562900E2E200 /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3E81C84564100E2E200 /* include */,
+				3188C3E71C84563800E2E200 /* src */,
+			);
+			name = jsoncpp;
+			sourceTree = "<group>";
+		};
+		3188C3E71C84563800E2E200 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3F31C84566900E2E200 /* json_reader.cpp */,
+				3188C3F41C84566900E2E200 /* json_tool.h */,
+				3188C3F51C84566900E2E200 /* json_value.cpp */,
+				3188C3F61C84566900E2E200 /* json_valueiterator.inl */,
+				3188C3F71C84566900E2E200 /* json_writer.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		3188C3E81C84564100E2E200 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3188C3E91C84565100E2E200 /* assertions.h */,
+				3188C3EA1C84565100E2E200 /* autolink.h */,
+				3188C3EB1C84565100E2E200 /* config.h */,
+				3188C3EC1C84565100E2E200 /* features.h */,
+				3188C3ED1C84565100E2E200 /* forwards.h */,
+				3188C3EE1C84565100E2E200 /* json.h */,
+				3188C3EF1C84565100E2E200 /* reader.h */,
+				3188C3F01C84565100E2E200 /* value.h */,
+				3188C3F11C84565100E2E200 /* version.h */,
+				3188C3F21C84565100E2E200 /* writer.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3188C36A1C844FA000E2E200 /* xmm-server-tool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3188C3721C844FA000E2E200 /* Build configuration list for PBXNativeTarget "xmm-server-tool" */;
+			buildPhases = (
+				3188C3671C844FA000E2E200 /* Sources */,
+				3188C3681C844FA000E2E200 /* Frameworks */,
+				3188C3691C844FA000E2E200 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "xmm-server-tool";
+			productName = "xmm-server-tool";
+			productReference = 3188C36B1C844FA000E2E200 /* xmm-server-tool */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3188C3631C844FA000E2E200 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = IRCAM;
+				TargetAttributes = {
+					3188C36A1C844FA000E2E200 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 3188C3661C844FA000E2E200 /* Build configuration list for PBXProject "xmm-server-tool" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3188C3621C844FA000E2E200;
+			productRefGroup = 3188C36C1C844FA000E2E200 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3188C36A1C844FA000E2E200 /* xmm-server-tool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3188C3671C844FA000E2E200 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3188C3D01C8455F600E2E200 /* xmmKMeans.cpp in Sources */,
+				3188C39F1C84542E00E2E200 /* xmmMongoClient.cpp in Sources */,
+				3188C3C11C8455D700E2E200 /* xmmGaussianDistribution.cpp in Sources */,
+				3188C3BE1C8455C800E2E200 /* xmmModelSingleClass.cpp in Sources */,
+				3188C3BD1C8455C800E2E200 /* xmmModelSharedParameters.cpp in Sources */,
+				3188C3DB1C84560500E2E200 /* xmmHmmSingleClass.cpp in Sources */,
+				3188C3D11C8455F600E2E200 /* xmmKMeansParameters.cpp in Sources */,
+				3188C3B41C8455B500E2E200 /* xmmTrainingSet.cpp in Sources */,
+				3188C3C91C8455E600E2E200 /* xmmAttribute.cpp in Sources */,
+				3188C3E41C84561500E2E200 /* xmmGmmSingleClass.cpp in Sources */,
+				3188C3F81C84566900E2E200 /* json_reader.cpp in Sources */,
+				3188C3E31C84561500E2E200 /* xmmGmmParameters.cpp in Sources */,
+				3188C3D91C84560500E2E200 /* xmmHierarchicalHmm.cpp in Sources */,
+				3188C3FA1C84566900E2E200 /* json_writer.cpp in Sources */,
+				3188C3DA1C84560500E2E200 /* xmmHmmParameters.cpp in Sources */,
+				3188C39E1C84542E00E2E200 /* gmmServerTool.cpp in Sources */,
+				3188C36F1C844FA000E2E200 /* main.cpp in Sources */,
+				3188C3CA1C8455E600E2E200 /* xmmJson.cpp in Sources */,
+				3188C3F91C84566900E2E200 /* json_value.cpp in Sources */,
+				3188C3E21C84561500E2E200 /* xmmGmm.cpp in Sources */,
+				3188C3B31C8455B500E2E200 /* xmmPhrase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3188C3701C844FA000E2E200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(XMM_DIR)/dependencies/jsoncpp/include",
+					"$(XMM_DIR)/src",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lpthread",
+					"-lsasl2",
+					"-lssl",
+					"-lcrypto",
+					"-lz",
+					"-lmongoc-1.0",
+					"-lbson-1.0",
+				);
+				XMM_DIR = ../dependencies/xmm;
+			};
+			name = Debug;
+		};
+		3188C3711C844FA000E2E200 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(XMM_DIR)/dependencies/jsoncpp/include",
+					"$(XMM_DIR)/src",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lpthread",
+					"-lsasl2",
+					"-lssl",
+					"-lcrypto",
+					"-lz",
+					"-lmongoc-1.0",
+					"-lbson-1.0",
+				);
+				XMM_DIR = ../dependencies/xmm;
+			};
+			name = Release;
+		};
+		3188C3731C844FA000E2E200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = ../../bin;
+				HEADER_SEARCH_PATHS = (
+					"$(XMM_DIR)/dependencies/jsoncpp/include",
+					"$(XMM_DIR)/src",
+					"$(MONGO_C_CLIENT_INCLUDES)/libmongoc-1.0",
+					"$(MONGO_C_CLIENT_INCLUDES)/libbson-1.0",
+				);
+				INSTALL_PATH = /;
+				MONGO_C_CLIENT_INCLUDES = /usr/local/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3188C3741C844FA000E2E200 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = ../../bin;
+				HEADER_SEARCH_PATHS = (
+					"$(XMM_DIR)/dependencies/jsoncpp/include",
+					"$(XMM_DIR)/src",
+					"$(MONGO_C_CLIENT_INCLUDES)/libmongoc-1.0",
+					"$(MONGO_C_CLIENT_INCLUDES)/libbson-1.0",
+				);
+				INSTALL_PATH = /;
+				MONGO_C_CLIENT_INCLUDES = /usr/local/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3188C3661C844FA000E2E200 /* Build configuration list for PBXProject "xmm-server-tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3188C3701C844FA000E2E200 /* Debug */,
+				3188C3711C844FA000E2E200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3188C3721C844FA000E2E200 /* Build configuration list for PBXNativeTarget "xmm-server-tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3188C3731C844FA000E2E200 /* Debug */,
+				3188C3741C844FA000E2E200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3188C3631C844FA000E2E200 /* Project object */;
+}

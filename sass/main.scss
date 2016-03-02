@@ -1,0 +1,226 @@
+// Define mixins and variables
+// @import '01-definitions';
+// // Define some global layout variables (background-color, text-color, etc...)
+// // and small class helpers (.small, .big for font sizes, .btn, etc..)
+// @import '02-commons';
+// // Modules specific styles
+// @import '03-modules';
+// // Import and overrides `wavesjs/basic-controllers` sass files,
+// // rendering of the controls can be configured though variables here
+// @import '04-controls';
+// // Application specific styling and overriding
+// @import 'overrides';
+
+canvas {
+  outline: 1px solid #cdcdcd;
+  width: 180px;
+  height: 60px;
+}
+
+.wiml {
+
+	//color: #fff;
+	//background-color: #000;
+
+	color: #000;
+	background-color: #fff;
+
+	.rec-but {
+		//display: inline;
+		width: 100px;
+		height: 100px;
+		background-color: #0b0;
+		color: #fff;
+		border: 0px none;
+		font-size: 2em;
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+		padding: 0px 0px;
+	}
+
+	.stop-but {
+		//display: inline;
+		width: 100px;
+		height: 100px;
+		background-color: #d00;
+		color: #fff;
+		border: 0px;
+		font-size: 2em;
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+		padding: 0px 0px;
+	}
+
+	.select {
+		float: center;
+		width: 180px;
+		font-size: 1.1em;
+		//height: 100px;
+		padding: 3px 10px 3px 10px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		//cursor: pointer;
+	}
+
+    /*LABEL FOR SELECT*/
+    .label {
+
+    	#lblSelect {
+    		position: relative;
+    		display: inline-block;
+ 
+ 	    	/*DOWNWARD ARROW (25bc)*/
+    		:after {
+                content                 : "\25bc";
+                position                : absolute;
+                top                     : 0;
+                right                   : 0;
+                bottom                  : 0;
+                width                   : 20pt;
+                line-height             : 40pt;
+                vertical-align          : middle;
+                text-align              : center;
+                background              : #000099;
+                color                   : #fefefe;
+               -moz-border-radius       : 0 6px 6px 0;
+               -webkit-border-radius    : 0 6px 6px 0;
+                border-radius           : 0 6px 6px 0;
+                pointer-events          : none;
+            }
+        }
+    }
+
+	.simple-but {
+		width: 180px;
+		//height: 100px;
+		font-size: 1.1em;
+		//padding: 10px;
+		// .active {
+
+		// }
+
+		// .inactive {
+
+		// }
+	}
+
+	#display-div {
+		//width: 100%;
+		//color: #fff;
+		font-size: 0.8em;
+	}
+
+	.clear-div {
+		clear: left;
+		float: center;
+		text-align: center;
+		//width: 200px; /* mandatory for centering */
+		//width: 100%;
+		margin: auto;
+		padding: 5px 5px;
+	}
+
+	/* --------- from bootstrap ---------- */
+	/*
+	table {
+	  background-color: transparent;
+	}
+	caption {
+	  padding-top: 8px;
+	  padding-bottom: 8px;
+	  color: #777777;
+	  text-align: left;
+	}
+	th {
+	  text-align: left;
+	}
+	.table {
+	  width: 100%;
+	  max-width: 100%;
+	  margin-bottom: 20px;
+	}
+	.table > thead > tr > th,
+	.table > tbody > tr > th,
+	.table > tfoot > tr > th,
+	.table > thead > tr > td,
+	.table > tbody > tr > td,
+	.table > tfoot > tr > td {
+	  padding: 8px;
+	  line-height: 1.42857143;
+	  vertical-align: top;
+	  border-top: 1px solid #dddddd;
+	}
+	.table > thead > tr > th {
+	  vertical-align: bottom;
+	  border-bottom: 2px solid #dddddd;
+	}
+	.table > caption + thead > tr:first-child > th,
+	.table > colgroup + thead > tr:first-child > th,
+	.table > thead:first-child > tr:first-child > th,
+	.table > caption + thead > tr:first-child > td,
+	.table > colgroup + thead > tr:first-child > td,
+	.table > thead:first-child > tr:first-child > td {
+	  border-top: 0;
+	}
+	.table > tbody + tbody {
+	  border-top: 2px solid #dddddd;
+	}
+	*/
+
+	/* ------------- spinner (tobiasahlin.com/spinkit/) -------------- */
+	.spinner {
+		margin: 100px auto;
+		width: 50px;
+		height: 40px;
+		text-align: center;
+		font-size: 10px;
+	}
+
+	.spinner > div {
+		background-color: #333;
+		height: 100%;
+		width: 6px;
+		display: inline-block;
+
+		-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+		animation: sk-stretchdelay 1.2s infinite ease-in-out;
+	}
+
+	.spinner .rect2 {
+		-webkit-animation-delay: -1.1s;
+		animation-delay: -1.1s;
+	}
+
+	.spinner .rect3 {
+		-webkit-animation-delay: -1.0s;
+		animation-delay: -1.0s;
+	}
+
+	.spinner .rect4 {
+		-webkit-animation-delay: -0.9s;
+		animation-delay: -0.9s;
+	}
+
+	.spinner .rect5 {
+		-webkit-animation-delay: -0.8s;
+		animation-delay: -0.8s;
+	}
+
+	@-webkit-keyframes sk-stretchdelay {
+		0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+		20% { -webkit-transform: scaleY(1.0) }
+	}
+
+	@keyframes sk-stretchdelay {
+		0%, 40%, 100% { 
+			transform: scaleY(0.4);
+			-webkit-transform: scaleY(0.4);
+  		}  20% { 
+    		transform: scaleY(1.0);
+    		-webkit-transform: scaleY(1.0);
+  		}
+	}
+}

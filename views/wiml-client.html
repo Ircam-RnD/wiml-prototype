@@ -1,0 +1,82 @@
+<div class="clear-div">
+<button id="rec-but" class="rec-but">
+REC
+</button>
+</div>
+
+<div class="clear-div">
+<label id="lblSelect">
+<select id="move-list" class="select">
+	<option id="still">Still</option>
+	<option id="shuffle">Shuffle</option>
+	<option id="walk">Walk</option>
+	<option id="run">Run</option>
+	<option id="hop">Hop</option>
+	<option id="stagger">Stagger</option>
+	<option id="ninja">Ninja</option>
+</select>
+</label>
+</div>
+
+<div class="clear-div">
+<button id="send-but" class="simple-but">
+SEND PHRASE
+</button>
+</div>
+
+<!--
+<div class="clear-div">
+<button type="button" id="train-but" class="simple-but">
+TRAIN MODELS
+</button>
+</div>
+-->
+
+<div class="clear-div">
+<button id="getmodels-but" class="simple-but">
+UPDATE MODELS
+</button>
+</div>
+
+<!-- ============================================== -->
+
+<div class="clear-div">
+<canvas id="signal-canvas"></canvas>
+</div>
+
+<div class="clear-div">
+<canvas id="features-canvas"></canvas>
+</div>
+
+<div class="clear-div">
+<canvas id="likelihoods-canvas"></canvas>
+</div>
+
+<div class="clear-div" id="likeliest-label-div">
+</div>
+
+<!-- ============================================== -->
+
+<div class="clear-div">
+<form action="/wiml-admin" method="get">
+<button class="simple-but">
+GO TO ADMIN
+</button>
+</form>
+</div>
+
+<!--
+<div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+-->
+
+<!--
+<script src="js/feed.js"></script>
+-->
+
+<script src="js/<%= clientType %>.js"></script>
