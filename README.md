@@ -1,4 +1,6 @@
-# WIML Server - Web Interactive Machine Learning service prototype, based on XMM library by Jules Françoise and parts of Soundworks and WavesJS
+# WIML Server
+
+## Web Interactive Machine Learning service prototype, based on XMM library by Jules Françoise, and parts of Soundworks and WavesJS
 
 ## Requirements :
 
@@ -17,8 +19,9 @@
 
 ## Usage :
 
-- Type "npm run watch" from the repository's root folder to start the server
-- From a smartphone, visit http://<YOUR-IP>:3000/wiml-client
+Type "npm run watch" from the project's root folder to start the server
+From a smartphone or any other similar device with sensors, visit http://<YOUR-IP>:3000/wiml-client
+You can now record "phrases", send them to the database tagged with labels, and get back in real-time the model trained with these phrases
 
 ## Notes :
 
