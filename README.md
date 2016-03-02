@@ -21,7 +21,8 @@
 
 Type `npm run watch` from the project's root folder to start the server  
 From a smartphone or any other similar device equipped with sensors, visit :  
-```http://<i></i>YOUR.IP.ADDRESS.HERE:3000/wiml-client```  
+```http://<i></i>YOUR.IP.ADDRESS.HERE:3000/wiml-client
+```
 You can now record phrases (sensor data time series), send them to the database tagged with labels, and load the model trained with these phrases from the server in real-time
 
 ## Notes :
