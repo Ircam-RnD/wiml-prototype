@@ -20,7 +20,7 @@
 ## Usage :
 
 Type `npm run mongo` from the project's root folder to start the server and mongodb  
-(does the same as `mongod --dbpath ./data/db` then `npm run watch`, but automatically kills mongod on `CTRL-C`)
+(does the same as `mongod --dbpath ./data/db` then `npm run watch`, but automatically kills mongod when killing node with `CTRL-C`)
 
 From a smartphone or any other similar device equipped with sensors, visit :  
 `http://YOUR.IP.ADDRESS.HERE:3000/wiml-client`  
