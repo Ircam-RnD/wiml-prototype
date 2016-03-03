@@ -10,7 +10,8 @@
   "scripts": {
     "bundle": "node ./bin/scripts --bundle",
     "start": "node dist/server/index.js",
-    "watch": "node ./bin/scripts --watch"
+    "watch": "node ./bin/scripts --watch",
+    "mongo": "./bin/mongo.sh"
   },
   "dependencies": {
     "assert": "^1.3.0",

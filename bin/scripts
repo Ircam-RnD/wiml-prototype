@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var execSync = require('child_process').execSync;
+var spawn = require('child_process').spawn;
 var fork = require('child_process').fork;
 var fs   = require('fs');
 var path = require('path');
@@ -40,6 +41,7 @@ var babelOptions = {
 
 var cwd = process.cwd();
 var server = null; // the process hosting the server
+var mongod = null;
 
 // colors for the command line
 // cf. http://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
@@ -116,7 +118,6 @@ function killServer() {
   console.log(util.format('%s=> Kill server%s', green, NC));
   server.kill();
 }
-
 
 // MAIN LOGIC
 // -----------------------------------------------
