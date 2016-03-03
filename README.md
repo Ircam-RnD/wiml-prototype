@@ -19,7 +19,9 @@
 
 ## Usage :
 
-Type `npm run watch` from the project's root folder to start the server  
+Type `npm run mongo` from the project's root folder to start the server and mongodb  
+(does the same as `mongod --dbpath ./data/db` then `npm run watch`, but automatically kills mongod on `CTRL-C`)
+
 From a smartphone or any other similar device equipped with sensors, visit :  
 `http://YOUR.IP.ADDRESS.HERE:3000/wiml-client`  
 You can now record phrases (sensor data time series), send them to the database tagged with labels, and load the model trained with these phrases from the server in real-time
