@@ -1,6 +1,6 @@
 # WIML Server
 
-## Web Interactive Machine Learning service prototype, based on XMM library by Jules Françoise, and parts of [Collective Soundworks](https://github.com/collective-soundworks) and [WavesJS](https://github.com/wavesjs)
+## Web Interactive Machine Learning service prototype, based on [XMM library](https://github.com/JulesFrancoise/xmm), and parts of [Collective Soundworks](https://github.com/collective-soundworks) and [WavesJS](https://github.com/wavesjs)
 
 ## Requirements :
 
