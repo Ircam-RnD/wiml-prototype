@@ -1,5 +1,6 @@
 bin/**
 !bin/scripts
+!bin/mongo.sh
 
 #data/db/**
 #!data/db
