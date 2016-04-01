@@ -43,24 +43,25 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 			inputFrameSize: 1,
 			windowSize: 128,
 			hopSize: 64,
-			period: 10
+			period: 20
 		};
 		super(defaults, options);
 
 		this.eventIn = new lfo.sources.EventIn({
-			relative: true,
+			//relative: true,
 			frameSize: this.params.inputFrameSize,
 			ctx: AudioContext
 		});
 
 		this.resampler = new Resampler({
+			frameSize: this.params.inputFrameSize,
 			period: this.params.period // in milliseconds
 		});
 
-		this.filter = new lfo.operators.MovingMedian({
-		//this.filter = new lfo.operators.MovingAverage({ // fill() function not recognized
-			order: 1
-		});
+		// this.filter = new lfo.operators.MovingMedian({
+		// //this.filter = new lfo.operators.MovingAverage({ // fill() function not recognized
+		// 	order: 1
+		// });
 
 		this.framer = new lfo.operators.Framer({
 			frameSize: this.params.windowSize * this.params.inputFrameSize,
@@ -79,10 +80,10 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 		//===================================//
 
 		this.eventIn.connect(this.resampler);
-		this.resampler.connect(this.filter);
+		//this.resampler.connect(this.filter);
 		//this.eventIn.connect(this.filter);
-		this.filter.connect(this.framer);
-		//this.resampler.connect(this.framer);
+		//this.filter.connect(this.framer);
+		this.resampler.connect(this.framer);
 		this.framer.connect(this.descr);
 
 	}
@@ -107,7 +108,8 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 	}
 
 	preFramerConnect(dest) {
-		this.filter.connect(dest);
+		//this.filter.connect(dest);
+		this.resampler.connect(dest);
 	}
 }
 

@@ -43,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31158F2B1CAE938600029220 /* json-features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "json-features.h"; path = "../../../../xmm/dependencies/jsoncpp/include/json-features.h"; sourceTree = "<group>"; };
 		3188C36B1C844FA000E2E200 /* xmm-server-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "xmm-server-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3188C36E1C844FA000E2E200 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gmmServerTool.cpp; sourceTree = "<group>"; };
@@ -82,11 +83,9 @@
 		3188C3D61C84560500E2E200 /* xmmHmmResults.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHmmResults.hpp; path = ../../../../xmm/src/models/hmm/xmmHmmResults.hpp; sourceTree = SOURCE_ROOT; };
 		3188C3D71C84560500E2E200 /* xmmHmmSingleClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmmHmmSingleClass.cpp; path = ../../../../xmm/src/models/hmm/xmmHmmSingleClass.cpp; sourceTree = SOURCE_ROOT; };
 		3188C3D81C84560500E2E200 /* xmmHmmSingleClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = xmmHmmSingleClass.hpp; path = ../../../../xmm/src/models/hmm/xmmHmmSingleClass.hpp; sourceTree = SOURCE_ROOT; };
-		3188C3E51C84562500E2E200 /* src */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = src; path = ../../../../xmm/src; sourceTree = SOURCE_ROOT; };
 		3188C3E91C84565100E2E200 /* assertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = assertions.h; path = ../../../../xmm/dependencies/jsoncpp/include/assertions.h; sourceTree = SOURCE_ROOT; };
 		3188C3EA1C84565100E2E200 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = autolink.h; path = ../../../../xmm/dependencies/jsoncpp/include/autolink.h; sourceTree = SOURCE_ROOT; };
 		3188C3EB1C84565100E2E200 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../../../../xmm/dependencies/jsoncpp/include/config.h; sourceTree = SOURCE_ROOT; };
-		3188C3EC1C84565100E2E200 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = ../../../../xmm/dependencies/jsoncpp/include/features.h; sourceTree = SOURCE_ROOT; };
 		3188C3ED1C84565100E2E200 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forwards.h; path = ../../../../xmm/dependencies/jsoncpp/include/forwards.h; sourceTree = SOURCE_ROOT; };
 		3188C3EE1C84565100E2E200 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../../../xmm/dependencies/jsoncpp/include/json.h; sourceTree = SOURCE_ROOT; };
 		3188C3EF1C84565100E2E200 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = ../../../../xmm/dependencies/jsoncpp/include/reader.h; sourceTree = SOURCE_ROOT; };
@@ -179,7 +178,6 @@
 		3188C3A71C8454F400E2E200 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				3188C3E51C84562500E2E200 /* src */,
 				3188C3A61C8454E900E2E200 /* core */,
 				3188C3A51C8454DA00E2E200 /* models */,
 			);
@@ -298,10 +296,10 @@
 		3188C3E81C84564100E2E200 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				31158F2B1CAE938600029220 /* json-features.h */,
 				3188C3E91C84565100E2E200 /* assertions.h */,
 				3188C3EA1C84565100E2E200 /* autolink.h */,
 				3188C3EB1C84565100E2E200 /* config.h */,
-				3188C3EC1C84565100E2E200 /* features.h */,
 				3188C3ED1C84565100E2E200 /* forwards.h */,
 				3188C3EE1C84565100E2E200 /* json.h */,
 				3188C3EF1C84565100E2E200 /* reader.h */,

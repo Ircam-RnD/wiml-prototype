@@ -5,10 +5,13 @@ import lfo from 'waves-lfo';
 import InputProcessingChain from '../common/lfo-input-processing-chain';
 import DataRecorder from '../common/lfo-data-recorder';
 import XmmGmmDecoder from '../common/lfo-xmm-gmm-decoder';
+import AudioPlayer from '../common/audio-player.js';
+
 
 
 // ==================== DOM elements =================== //
 
+//let soundmute = document.querySelector('#soundmute');
 let recbut = document.querySelector('#rec-but');
 let sendbut = document.querySelector('#send-but');
 sendbut.disabled = true;
@@ -17,19 +20,200 @@ let getmodelsbut = document.querySelector('#getmodels-but');
 let movelist = document.querySelector('#move-list');
 let likeliest = document.querySelector('#likeliest-label-div');
 
+// ================== SONIFICATION ==================== //
+
+/*
+let audiotags = [];
+let fadeFunctions = [];
+
+for(let i=0; i<6; i++) {
+	let el = document.createElement("audio");
+	audiotags.push(el);
+	//audiotags[audiotags.length-1].setAttribute("autoplay", true);
+	audiotags[audiotags.length-1].setAttribute("preload", "automatic")
+	audiotags[audiotags.length-1].setAttribute("controls", "true")
+	audiotags[audiotags.length-1].setAttribute("loop", "true");
+}
+audiotags[0].setAttribute("src", "sounds/323800__reacthor__blood-drone.mp3")
+//audiotags[1].setAttribute("src", "sounds/sound.mp3");
+audiotags[2].setAttribute("src", "sounds/89953__greg-baumont__oberheimxpanderrandomdrone.mp3");
+//audiotags[3].setAttribute("src", "sounds/sound.mp3");
+audiotags[4].setAttribute("src", "sounds/324395__felipejordani__004-alien-machine-ii.mp3");
+//audiotags[5].setAttribute("src", "sounds/sound.mp3");
+
+let audiodiv = document.querySelector("#audiodiv");
+for(let i=0; i<audiotags.length; i++) {
+	audiodiv.appendChild(audiotags[i]);
+}
+
+document.body.addEventListener('touchend', () => {
+	for(let i=0; i<audiotags.length; i++) {
+		audiotags[i].volume = 0;
+		audiotags[i].play();
+		audiotags[i].volume = 0;
+	}
+});
+
+for(let i=0; i<audiotags.length; i++) {
+	fadeFunctions.push((audiotag, targetVal, duration) => {
+		let interval = 100;
+		let inc = (targetVal - audiotag.volume) / (duration / interval)
+		console.log(audiotag.volume + " -> " + targetVal + " " + inc);
+		if(inc == 0) return;
+		let fade = setInterval(() => {
+			if(Math.abs(audiotag.volume - targetVal) > Math.abs(inc)) {
+				audiotag.volume += inc;
+				//console.log(audiotag.volume);
+			}
+
+			if(Math.abs(audiotag.volume - targetVal) < Math.abs(inc)) {
+				audiotag.volume = targetVal;
+				clearInterval(fade);
+			}
+
+		}, interval);
+	});
+}
+
+const changeSounds = (label) => {
+
+	switch (label) {
+		case 'Still':
+			for(let i=0; i<audiotags.length; i++) {
+				if(i == 0) {
+					fadeFunctions[i](audiotags[i], 1, 2000);
+				} else {
+					fadeFunctions[i](audiotags[i], 0, 2000);
+				}
+			}
+			break;
+
+		case 'Walk':
+			for(let i=0; i<audiotags.length; i++) {
+				if(i == 2) {
+					fadeFunctions[i](audiotags[i], 1, 2000);
+				} else {
+					fadeFunctions[i](audiotags[i], 0, 2000);
+				}
+			}
+			break;
+
+		case 'Run':
+			for(let i=0; i<audiotags.length; i++) {
+				if(i == 4) {
+					fadeFunctions[i](audiotags[i], 1, 2000);
+				} else {
+					fadeFunctions[i](audiotags[i], 0, 2000);
+				}
+			}
+			break;
+
+		default:
+			break;
+	}
+}
+//*/
+
+// =================== the Web Audio way ================== //
+
+//*
+let AudioContext = window.AudioContext || window.webkitAudioContext || function(){};
+let context = new AudioContext();
+
+let touched = false;
+let loaded = 0;
+
+document.body.addEventListener('touchend', () => {
+	if(touched || loaded < 3) return;
+	touched = true;
+	for(let i=0; i<players.length; i++) {
+		console.log(i + ' : start !');
+		players[i].start();
+	}
+});
+
+let players = [];
+players.length = 3;
+
+const ajaxReqs = [];
+ajaxReqs.length = 3;
+
+const loadSound = (url, index, trig) => {
+	const req = new XMLHttpRequest();
+	ajaxReqs[index] = req;
+	req.open('GET', url, true);
+	req.responseType = 'arraybuffer';
+
+	req.onload = () => {
+		context.decodeAudioData(req.response, (buffer) => {
+			//const player = new AudioPlayer(context, buffer);
+			//console.log("loaded !");
+			players[index] = new AudioPlayer(context, buffer);
+			console.log(url + " loaded !");
+			trig(players.length-1);
+		});
+	};
+	req.send();
+}
+
+//loadSound("sounds/44652__simondsouza__hip-hop-groove.mp3", 0, () => { loaded++; });
+loadSound("sounds/bubulle_harmo.mp3", 0, () => { loaded++; });
+loadSound("sounds/marchesynth_duck.mp3", 1, () => { loaded++; });
+loadSound("sounds/tex01-23_cartoon_loop.mp3", 2, () => { loaded++; });
+//*/
+
+const changeSounds = (label) => {
+
+	//console.log(players.length);
+	switch (label) {
+		case 'Still':
+			for(let i=0; i<players.length; i++) {
+				if(i==0) {
+					players[i].fade(1.0, 1000);
+				} else {
+					players[i].fade(0.0, 1000);
+				}
+			}
+			break;
+
+		case 'Walk':
+			for(let i=0; i<players.length; i++) {
+				if(i==1) {
+					players[i].fade(1.0, 1000);
+				} else {
+					players[i].fade(0.0, 1000);
+				}
+			}
+			break;
+
+		case 'Run':
+			for(let i=0; i<players.length; i++) {
+				if(i==2) {
+					players[i].fade(1.0, 1000);
+				} else {
+					players[i].fade(0.0, 1000);
+				}
+			}
+			break;
+
+		default:
+			break;
+	}
+}
 
 // ===================== lfop graph ==================== //
 
 const inputChain = new InputProcessingChain({
-	windowSize: 256,
+	windowSize: 64,
 	hopSize: 16,
-	//frameSize: 1
+	frameSize: 64,
+	period: 20
 });
 const dataRecorder = new DataRecorder({
 	separateArrays: true
 });
 const gmmDecoder = new XmmGmmDecoder({
-	likelihoodWindow: 3
+	likelihoodWindow: 2
 });
 
 const featuresBpf = new lfo.sinks.Bpf({
@@ -38,10 +222,11 @@ const featuresBpf = new lfo.sinks.Bpf({
 	max: 1,
 	canvas: document.querySelector('#features-canvas'),
 	duration: 10 * inputChain.params.hopSize * inputChain.params.period,
-	colors: ['#f00', '#0f0', '#00f'] // magnitude : Red, frequency : Green, periodicity : Blue
+	colors: ['#f00', '#0c0', '#33f'] // magnitude : Red, frequency : Green, periodicity : Blue
 });
 
 const signalBpf = new lfo.sinks.Bpf({
+	frameSize: 1,
 	radius: 0,
 	min: 0,
 	max: 1,
@@ -67,7 +252,7 @@ const likelihoodsBpf = new lfo.sinks.Bpf({
 	max: 1,
 	canvas: document.querySelector('#likelihoods-canvas'),
 	duration: 10 * inputChain.params.hopSize * inputChain.params.period,
-	colors: ['#f00', '#0f0', '#00f'] // magnitude : Red, frequency : Green, periodicity : Blue
+	colors: ['#f00', '#0c0', '#33f'] // magnitude : Red, frequency : Green, periodicity : Blue
 });
 //*/
 
@@ -94,7 +279,7 @@ const roundValue = (input) => {
 
 const feedInputChain = (module) => {
 	if(module.isValid) {
-		//*
+		/*
 		motionInput.addListener('energy', (val) => {
 			inputChain.process(performance.now(), val);
 		});
@@ -103,7 +288,7 @@ const feedInputChain = (module) => {
 		//*
 		motionInput.addListener('rotationRate', (val) => {
 			//here compute the equivalent of "spin" :
-			let spin = Math.pow(val[0]*val[0] + val[1]*val[1] + val[2]*val[2], 0.5) * 0.1;
+			let spin = Math.pow(val[0]*val[0] + val[1]*val[1] + val[2]*val[2], 0.5) * 0.003;
 			inputChain.process(performance.now(), spin);
 		});
 		//*/
@@ -120,7 +305,7 @@ const feedInputChain = (module) => {
 			const energy = modules[0];
 			const rotationRate = modules[1];
 			//feedInputChain(energy);
-			feedInputChain(energy);
+			feedInputChain(rotationRate);
 		})
 		.catch((err) => console.error(err.stack));
 })();
@@ -147,7 +332,7 @@ socket.on('train', (message) => {
 
 // update model on new model reception from server :
 socket.on('models', (models) => {
-	//console.log(models);
+	console.log(models);
 	let m = models.models;
 	if(Array.isArray(m) && m.length > 0) {
 		//gmmDecoder.setModel(m[m.length - 1]);
@@ -194,31 +379,28 @@ sendbut.addEventListener('click', () => {
 	}
 });
 
-/*
-trainbut.addEventListener('click', () => {
-	socket.emit('trainModels');
-});
-
-getmodelsbut.addEventListener('click', () => {
-	socket.emit('getModels');
-});
-//*/
 
 getmodelsbut.addEventListener('click', () => {
 	socket.emit('trainModels');
 });
 
+// ===================== PAGE INITIALIZATION =================== //
 
 (() => {
 	const updateLikeliest = (del) => {
-		likeliest.innerHTML = gmmDecoder.likeliestLabel;
+		//let newLabel = gmmDecoder.likeliestLabel;
+
+		if(gmmDecoder.likeliestLabel !== likeliest.innerHTML) {
+			changeSounds(gmmDecoder.likeliestLabel);
+		}
+		likeliest.innerHTML = gmmDecoder.likeliestLabel;//newLabel;
 		setTimeout(updateLikeliest, del);
 	}
 
 	updateLikeliest(200);
 })();
 
-// =============== sensors simulation for desktop ============== //
+// =============== sensors mocking for desktop ============== //
 //*
 (function() {
 

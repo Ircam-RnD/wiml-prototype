@@ -24,7 +24,9 @@
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5",
     "source-map-support": "^0.4.0",
-    "waves-lfo": "github:wavesjs/lfo"
+    "waves-audio": "github:wavesjs/audio",
+    "waves-lfo": "github:wavesjs/lfo",
+    "waves-loaders": "github:wavesjs/loaders"
   },
   "devDependencies": {
     "babel": "^5.8.34",

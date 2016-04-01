@@ -89,6 +89,7 @@ const likelihoods = (observation, model, modelResults) => {
 	}
 };
 
+// TODO : add reset() function (empty likelihood_buffer)
 
 //=================== THE EXPORTED CLASS ======================//
 
@@ -114,7 +115,8 @@ export default class XmmGmmDecoder extends lfo.core.BaseLfo {
 				return this.model.models[this.modelResults.likeliest].label;
 			}
 		}
-		return('no estimation available');
+		return 'unknown';
+		//return('no estimation available');
 	}
 
 	process(time, frame, metaData) {

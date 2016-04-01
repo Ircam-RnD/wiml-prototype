@@ -11,24 +11,62 @@
 // // Application specific styling and overriding
 // @import 'overrides';
 
-canvas {
-  outline: 1px solid #cdcdcd;
-  width: 180px;
-  height: 60px;
-}
 
 .wiml {
 
-	//color: #fff;
-	//background-color: #000;
+	$break-width: 500px;
+
+	$small-canvas-width: 180px;
+	$small-canvas-height: 50px;
+	$large-canvas-width: 360px;
+	$large-canvas-height: 100px;
+
+	$canvas-width: $large-canvas-width;
+	$canvas-height: $large-canvas-height;
+
+	canvas {
+
+	  outline: 1px solid #cdcdcd;
+	  width: $large-canvas-width;
+	  height: $large-canvas-height;
+
+	  @media screen and (max-width: $break-width) {
+	  	width: $small-canvas-width;
+	  	height: $small-canvas-height;
+	  }
+	}
+
+	.canvas-legend {
+		width: $large-canvas-width;
+		max-width: $large-canvas-width;
+		position: static;
+		float: center;
+		text-align: left;
+		background-color: #eee;
+		display: block;
+		clear: left;
+		//text-align: center;
+		//width: 200px; /* mandatory for centering */
+		//width: 100%;
+		margin: auto;
+		padding: 4px 4px;
+
+		@media screen and (max-width: $break-width) {
+			width: $small-canvas-width;
+			max-width: $small-canvas-width;
+		}
+	}
+
 
 	color: #000;
 	background-color: #fff;
 
+
+
 	.rec-but {
 		//display: inline;
-		width: 100px;
-		height: 100px;
+		width: 90px;
+		height: 90px;
 		background-color: #0b0;
 		color: #fff;
 		border: 0px none;
@@ -41,8 +79,8 @@ canvas {
 
 	.stop-but {
 		//display: inline;
-		width: 100px;
-		height: 100px;
+		width: 90px;
+		height: 90px;
 		background-color: #d00;
 		color: #fff;
 		border: 0px;
@@ -96,7 +134,7 @@ canvas {
 	.simple-but {
 		width: 180px;
 		//height: 100px;
-		font-size: 1.1em;
+		font-size: 1.0em;
 		//padding: 10px;
 		// .active {
 
@@ -120,7 +158,21 @@ canvas {
 		//width: 200px; /* mandatory for centering */
 		//width: 100%;
 		margin: auto;
-		padding: 5px 5px;
+		padding: 4px 4px;
+	}
+
+	#likeliest-label-div {
+		width: 174px;
+		font-size: 1.33em;
+		color: #000;
+		background-color: #eee;
+		font-family: courier;
+		margin-top: 4px;
+		margin-bottom: 8px;
+
+		@media screen and (max-width: $break-width) {
+			width: $small-canvas-width;
+		}
 	}
 
 	/* --------- from bootstrap ---------- */

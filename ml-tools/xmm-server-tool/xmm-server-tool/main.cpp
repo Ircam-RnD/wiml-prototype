@@ -63,6 +63,26 @@ public:
         // do this from node instead of here
     }
     
+    
+    // TODO : remove (just here for test)
+    std::string getLastPhrase() {
+        std::vector<std::string> cn;
+        cn.push_back(std::string("magnitude"));
+        cn.push_back(std::string("frequency"));
+        cn.push_back(std::string("periodicity"));
+        std::vector<std::string> labs;
+        labs.push_back(std::string("Run"));
+        
+        std::vector<std::string> phrases = mongoClient.fetchPhrases(std::string("wimldb"), std::string("phrases"), labs, cn);
+        if(phrases.size() > 0) {
+            std::cout << "ok" << std::endl;
+            return phrases[phrases.size() - 1];
+        } else {
+            std::cout << "no phrases" << std::endl;
+            return "";
+        }
+    }
+    
 private:
     
     void newTrainingSet(std::vector<std::string> labels, std::vector<std::string> colnames) {
@@ -224,6 +244,11 @@ int main(int argc, char * argv[]) {
             else if(args[0].size() > 0 && args[0][0].compare("quit") == 0) {
                 //never happens, process supposed to be killed by host
                 break;
+            }
+            //-------------------------------------------------------------//
+            else if(args[0].size() > 0 && args[0][0].compare("phrase") == 0) {
+                //never happens, process supposed to be killed by host
+                std::cout << driver.getLastPhrase() << std::endl;
             }
             //etc ...
             

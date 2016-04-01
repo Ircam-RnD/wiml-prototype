@@ -36,11 +36,14 @@ export default class Resampler extends lfo.core.BaseLfo {
 
 	constructor(options = {}) {
 		const defaults = {
-			//period: 10
+			frameSize: 1,
+			period: 20
 		};
 		super(defaults, options);
-		//this.params.frameRate = 1000 / this.params.period;
+
 		this.streamParams.sourceSampleRate = 1000 / this.params.period;
+		this.streamParams.frameSize = this.params.frameSize;
+		this.streamParams.frameRate = 1000 / this.params.period;
 
 		//this.frameRate = 1000 / this.params.period;
 		this.intervalID = -1;

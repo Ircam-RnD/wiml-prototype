@@ -63,6 +63,15 @@ export default class MongoDBController {
 		});
 	}
 
+	// getPhrases(dbName, collName) {
+	// 	let res = [];
+	// 	return new Promise((resolve, reject) => {
+	// 		mongoClient.connect(this.fullUrl + dbName, (err, db) => {
+	// 			let cursor = db.collection()
+	// 		});
+	// 	});
+	// }
+
 	//======================= CLEANUP =======================//
 
 	deleteCollection(dbName, collName) {

@@ -1,5 +1,6 @@
 // ----------------------------- regular http server :
 import http from 'http';
+//import request from 'request';
 // ----------------------------- connect stuff :
 import connect from 'connect';
 import render from 'connect-render';
@@ -47,7 +48,7 @@ app.use('/wiml-client', (req, res) => {
 	res.render('wiml-client.html', { appName: 'wiml-client', clientType: 'wiml-client'});
 });
 
-// default route : leave it after any other routes declarations
+// default route : leave it after any other route declarations
 app.use((req, res) => {
 	res.render('index.html', { appName: 'index', clientType: 'index'});
 });
@@ -57,12 +58,12 @@ let io = iomodule(server);
 
 //================================= SOCKETS =================================//
 
-const sockets = [];
+const clientSockets = [];
 const nsp_client = io.of('/wiml-client');
 const trainingConfig = {
 	labels: ['Still', 'Shuffle', 'Walk', 'Run', 'Hop', 'Stagger', 'Ninja'],
 	column_names: ['magnitude', 'frequency', 'periodicity'],
-	gaussians: 3
+	gaussians: 1
 };
 
 // instead of io.on('connection', function(client) { .. });
@@ -70,11 +71,11 @@ nsp_client.on('connection', (socket) => {
 	
 	socket.mongo = new MongoDBController({ parentid: socket.id });
 
-	sockets.push(socket);
+	clientSockets.push(socket);
 	console.log('client ' + socket.id + ' connected');
 	socket.on('disconnect', () => {
 		console.log('client ' + socket.id + ' disconnected');
-		sockets.splice(sockets.indexOf(socket), 1);
+		clientSockets.splice(clientSockets.indexOf(socket), 1);
 	});
 
 	// get model on first connection
@@ -92,6 +93,9 @@ nsp_client.on('connection', (socket) => {
 		console.log('client ' + socket.id + ' said : writePhrase !');
 		//console.log(data);
 		socket.mongo.writeToDatabase('wimldb', 'phrases', data);
+		for(let i=0; i<adminSockets.length; i++) {
+			adminSockets[i].refresh();
+		}
 	});
 
 	socket.on('trainModels', (data) => {
@@ -122,9 +126,43 @@ nsp_client.on('connection', (socket) => {
 
 
 
+const adminSockets = [];
 const nsp_admin = io.of('/wiml-admin');
 
 nsp_admin.on('connection', (socket) => {
+
+	socket.refresh = () => {
+		mongodbController.getModels('wimldb', 'phrases')
+		.then((data) => {
+			socket.emit('phrases', { phrases: data, message: 'here are your phrases' });
+		})
+		.catch((err) => console.error(err));
+	}
+
+	adminSockets.push(socket);
+	console.log('client ' + socket.id + ' connected');
+	socket.on('disconnect', () => {
+		console.log('client ' + socket.id + ' disconnected');
+		adminSockets.splice(adminSockets.indexOf(socket), 1);
+	});
+
+	// send phrases to build UI :
+	// mongodbController.getModels('wimldb', 'phrases')
+	// .then((data) => {
+	// 	socket.emit('phrases', { phrases: data, message: 'here are your phrases' });
+	// })
+	// .catch((err) => console.error(err));
+
+	socket.refresh();
+
+	socket.on('refreshPhrases', (data) => {
+		socket.refresh();
+		// mongodbController.getModels('wimldb', 'phrases')
+		// .then((p) => {
+		// 	socket.emit('phrases', { phrases: p, message: 'here are your phrases' });
+		// })
+		// .catch((err) => console.error(err));
+	});
 
 	socket.on('clearModels', (data) => {
 		mongodbController.deleteCollection('wimldb', 'models');
@@ -139,7 +177,10 @@ nsp_admin.on('connection', (socket) => {
 	socket.on('clearAll', (data) => {
 		mongodbController.deleteCollection('wimldb', 'models');
 		mongodbController.deleteCollection('wimldb', 'phrases');
-		socket.emit('clear', { message: 'clear all done' });
+		//socket.emit('clear', { message: 'clear all done' });
+		for(let i=0; i<adminSockets.length; i++) {
+			adminSockets[i].emit('clear', { message: 'clear all done' });
+		}
 	});
 });
 
