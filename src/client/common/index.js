@@ -2,5 +2,8 @@ import DataRecorder from './lfo-data-recorder';
 import InputProcessingChain from './lfo-input-processing-chain';
 import PseudoYin from './lfo-pseudo-yin';
 import Resampler from './lfo-resampler';
+import ResamplerExp from './lfo-resampler-experimental';
 import XmmDecoder from './lfo-xmm-gmm-decoder';
+import Delta from './lfo-delta';
+import Intensity from './lfo-intensity';
 import AudioPlayer from './audio-player.js';

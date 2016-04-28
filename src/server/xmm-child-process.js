@@ -47,40 +47,70 @@ export default class XmmChildProcess {
 		this.parentid = defaults.parentid;
 	}
 
-	trainModels(dbName, srcCollName, dstCollName, args) {
+	configureModels(modelType, args) {
 		return new Promise((resolve, reject) => {
-			//build command line :
-			let i;
-			let inputString = 'train ' + dbName + ' ' + srcCollName + ' ' + dstCollName ;
-			inputString += ' --sender ' + this.parentid + ' --labels ';
-			for(i in args.labels) {
-				inputString += args.labels[i] + ' ';
-			}
-			inputString += '--colnames';
-			for(i in args.column_names) {
-				inputString += ' ' + args.column_names[i];
-			}
+			// build command line :
+			let configString = 'config' + ' ' + modelType;
 			if(args.gaussians !== undefined) {
-				inputString += ' --gaussians ' + args.gaussians;
+				configString += ' --gaussians ' + args.gaussians;
 			}
-			inputString += '\n';
+			if(args.states !== undefined) {
+				configString += ' --states ' + args.states;
+			}
+			if(args.relativeRegularization !== undefined) {
+				configString += ' --relative_regularization ' + args.relativeRegularization;
+			}
+			if(args.absoluteRegularization !== undefined) {
+				configString += ' --absolute_regularization ' + args.absoluteRegularization;
+			}
+			configString += ' --sender ' + this.parentid + '\n';
 
-			//send command line to xmm :
-			child.stdin.write(inputString);
+			// send command line to xmm :
+			child.stdin.write(configString);
 
 			child.stdout.on('data', (data) => {
-				//listen for xmm confirmation messages
-				let trim = data.replace('\n', '');
-				let response = trim.split(' ');
+				// listen for xmm confirmation messages
+				let response = data.replace('\n', '').split(' ');
+				if(response.length === 4 && response[0] === 'config' && response[2] === '--sender' && response[3] === this.parentid) {
+					// console.log('ok');
+					resolve(response[1]);
+				}
+			});
+		});
+	}
+
+	trainModels(modelType, dbName, srcCollName, dstCollName, args) {
+		return new Promise((resolve, reject) => {
+			// build command line :
+			let i;
+			let trainString = 'train ' + modelType + ' ' + dbName + ' ' + srcCollName + ' ' + dstCollName ;
+			trainString += ' --sender ' + this.parentid + ' --labels ';
+			for(i in args.labels) {
+				trainString += args.labels[i] + ' ';
+			}
+			trainString += '--colnames';
+			for(i in args.column_names) {
+				trainString += ' ' + args.column_names[i];
+			}
+			trainString += '\n';
+
+			// send command line to xmm :
+			child.stdin.write(trainString);
+
+			child.stdout.on('data', (data) => {
+				// listen for xmm confirmation messages
+				//let trim = data.replace('\n', '');
+				//let response = trim.split(' ');
+				let response = data.replace('\n', '').split(' ');
 				if(response.length === 4 && response[0] === 'train' && response[2] === '--sender' && response[3] === this.parentid) {
-					//console.log('ok');
+					// console.log('ok');
 					resolve(response[1]);
 				}
 			});
 
-			child.stderr.on('data', (data) => {
-				reject(data);
-			});
+			// child.stderr.on('data', (data) => {
+			// 	reject(data);
+			// });
 		});
 	}
 

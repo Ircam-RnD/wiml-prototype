@@ -1,4 +1,4 @@
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 
 // get the inverse_covariances matrix of each of the GMM classes
 

@@ -34,7 +34,7 @@ typedef struct {
     std::string output;
 }
 workerdata_t;
-*/
+//*/
 
 typedef enum { XmmMongoGet = 0, XmmMongoSet } XmmMongoTaskE;
 

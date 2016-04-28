@@ -1,4 +1,4 @@
-import lfo from "waves-lfo";
+import * as lfo from "waves-lfo";
 
 // ================ polyfill for performance.now ============= //
 // --> https://gist.github.com/paulirish/5438650

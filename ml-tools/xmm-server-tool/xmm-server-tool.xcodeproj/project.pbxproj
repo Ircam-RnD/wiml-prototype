@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3145734A1CBFDDBA00796A01 /* hhmmServerTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 314573481CBFDDBA00796A01 /* hhmmServerTool.cpp */; };
 		3188C36F1C844FA000E2E200 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C36E1C844FA000E2E200 /* main.cpp */; };
 		3188C39E1C84542E00E2E200 /* gmmServerTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */; };
 		3188C39F1C84542E00E2E200 /* xmmMongoClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3188C39C1C84542E00E2E200 /* xmmMongoClient.cpp */; };
@@ -44,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		31158F2B1CAE938600029220 /* json-features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "json-features.h"; path = "../../../../xmm/dependencies/jsoncpp/include/json-features.h"; sourceTree = "<group>"; };
+		314573481CBFDDBA00796A01 /* hhmmServerTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hhmmServerTool.cpp; sourceTree = "<group>"; };
+		314573491CBFDDBA00796A01 /* hhmmServerTool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hhmmServerTool.hpp; sourceTree = "<group>"; };
+		3145734B1CBFDFE400796A01 /* xmmServerToolBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xmmServerToolBase.h; sourceTree = "<group>"; };
 		3188C36B1C844FA000E2E200 /* xmm-server-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "xmm-server-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3188C36E1C844FA000E2E200 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gmmServerTool.cpp; sourceTree = "<group>"; };
@@ -138,8 +142,11 @@
 			isa = PBXGroup;
 			children = (
 				3188C36E1C844FA000E2E200 /* main.cpp */,
+				3145734B1CBFDFE400796A01 /* xmmServerToolBase.h */,
 				3188C39A1C84542E00E2E200 /* gmmServerTool.cpp */,
 				3188C39B1C84542E00E2E200 /* gmmServerTool.hpp */,
+				314573481CBFDDBA00796A01 /* hhmmServerTool.cpp */,
+				314573491CBFDDBA00796A01 /* hhmmServerTool.hpp */,
 				3188C39C1C84542E00E2E200 /* xmmMongoClient.cpp */,
 				3188C39D1C84542E00E2E200 /* xmmMongoClient.hpp */,
 			);
@@ -374,6 +381,7 @@
 				3188C3BD1C8455C800E2E200 /* xmmModelSharedParameters.cpp in Sources */,
 				31E104461C90A2B80080D9CE /* xmmGmm.cpp in Sources */,
 				3188C3DB1C84560500E2E200 /* xmmHmmSingleClass.cpp in Sources */,
+				3145734A1CBFDDBA00796A01 /* hhmmServerTool.cpp in Sources */,
 				3188C3D11C8455F600E2E200 /* xmmKMeansParameters.cpp in Sources */,
 				3188C3B41C8455B500E2E200 /* xmmTrainingSet.cpp in Sources */,
 				3188C3C91C8455E600E2E200 /* xmmAttribute.cpp in Sources */,
@@ -435,7 +443,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-lpthread",

@@ -93,7 +93,7 @@ xmmMongoClient::task(XmmMongoTaskE t, std::vector<std::string> args)
     switch(t) {
         case XmmMongoGet:
             
-            collection = mongoc_client_get_collection(client, "phrases", "phrases");
+            collection = mongoc_client_get_collection(client, "wimldb", "phrases");
             query = BCON_NEW ("$query", "{",
                                 //"label", BCON_UTF8("Walk"),
                                 "column_names", "{", "$all", "[", BCON_UTF8("magnitude"), BCON_UTF8("frequency"), BCON_UTF8("periodicity"), "]", "}",
@@ -131,7 +131,6 @@ xmmMongoClient::fetchPhrases(std::string db, std::string coll, std::vector<std::
                       //"label", BCON_UTF8("Walk"),
                       "column_names", "{", "$all", "[", BCON_UTF8("magnitude"), BCON_UTF8("frequency"), BCON_UTF8("periodicity"), "]", "}",
                       "}");
-    //query = BCON_NEW("$query", "{", "}"); // ETC ....
     
     cursor = mongoc_collection_find(collection, MONGOC_QUERY_NONE, 0, 0, 0, query, NULL, NULL);
     

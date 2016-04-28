@@ -1,6 +1,7 @@
 
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 import Resampler from './lfo-resampler';
+import ResamplerExp from './lfo-resampler-experimental';
 import PseudoYin from './lfo-pseudo-yin';
 
 
@@ -43,6 +44,7 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 			inputFrameSize: 1,
 			windowSize: 128,
 			hopSize: 64,
+			outputRate: 50,	
 			period: 20
 		};
 		super(defaults, options);
@@ -58,6 +60,13 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 			period: this.params.period // in milliseconds
 		});
 
+		// this.resampler = new ResamplerExp({
+		// 	frameSize: this.params.inputFrameSize,
+		// 	outputRate: this.params.outputRate,
+		// 	bufferDuration: 150
+		// 	//period: this.params.period // in milliseconds
+		// });
+
 		// this.filter = new lfo.operators.MovingMedian({
 		// //this.filter = new lfo.operators.MovingAverage({ // fill() function not recognized
 		// 	order: 1
@@ -71,7 +80,8 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 		});
 
 		this.descr = new PseudoYin({
-			frameSize: 3,
+			//frameSize: 3, // defined internally
+			inputRate: 1000 / this.params.period,
 			noiseThreshold: 0.03
 		});
 
@@ -101,10 +111,15 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
     	child.parent = this.descr;
 	}
 
+	// TODO : implement disconect()
+
 	process(time, frame, metaData) {
 		//this.eventIn.process(performance.now(), [frame]);
+		
 		//console.log('Pseudo-Yin outFrame : ' + this.descr.outFrame);
 		this.eventIn.process(time, frame, metaData);
+
+		//	this.resampler.process(time, frame, metaData);
 	}
 
 	preFramerConnect(dest) {

@@ -1,6 +1,44 @@
 import io from 'socket.io-client';
 import lfo from 'waves-lfo';
 
+//window.location.href = window.location.pathname + window.location.search;
+
+//===================== CooooooKies ! ===================//
+
+const setCookie = (cname,cvalue,exdays) => {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires+"; path=/";
+}
+
+const getCookie = (cname) => {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+const checkCookie = () => {
+    let user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+//checkCookie(); 
+
 // let clearmodelsbut = document.querySelector('#clearmodels-but');
 // let clearphrasesbut = document.querySelector('#clearphrases-but');
 let clearallbut = document.querySelector('#clearall-but');

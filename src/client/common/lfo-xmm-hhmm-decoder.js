@@ -1,4 +1,4 @@
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 
 // simplified decoding algorithm :
 // if(!forward_init) forward_init(obs); else forward_update(obs)

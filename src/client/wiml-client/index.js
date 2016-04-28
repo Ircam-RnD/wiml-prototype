@@ -1,13 +1,77 @@
 import io from 'socket.io-client';
 import motionInput from 'motion-input';
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 
+import Intensity from '../common/lfo-intensity';
 import InputProcessingChain from '../common/lfo-input-processing-chain';
 import DataRecorder from '../common/lfo-data-recorder';
 import XmmGmmDecoder from '../common/lfo-xmm-gmm-decoder';
 import AudioPlayer from '../common/audio-player.js';
 
+// from : http://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser
+function getBrowser(){
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+    if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+        return {name:'IE',version:(tem[1]||'')};
+        }   
+    if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR\/(\d+)/)
+        if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+        }   
+    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+    return {
+      name: M[0],
+      version: M[1]
+    };
+}
 
+//and for os (in case), see : http://stackoverflow.com/questions/9514179/how-to-find-the-operating-system-version-using-javascript
+
+let rads = false;
+if(getBrowser().name === 'Chrome') {
+	rads = true;
+	console.log('switching to rads mode for rotationRate');
+}
+
+//===================== CooooooKies ! ===================//
+
+/*
+const setCookie = (cname,cvalue,exdays) => {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires+"; path=/";
+}
+
+const getCookie = (cname) => {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+const checkCookie = () => {
+    let user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+//*/
+
+//checkCookie(); 
 
 // ==================== DOM elements =================== //
 
@@ -22,98 +86,6 @@ let likeliest = document.querySelector('#likeliest-label-div');
 
 // ================== SONIFICATION ==================== //
 
-/*
-let audiotags = [];
-let fadeFunctions = [];
-
-for(let i=0; i<6; i++) {
-	let el = document.createElement("audio");
-	audiotags.push(el);
-	//audiotags[audiotags.length-1].setAttribute("autoplay", true);
-	audiotags[audiotags.length-1].setAttribute("preload", "automatic")
-	audiotags[audiotags.length-1].setAttribute("controls", "true")
-	audiotags[audiotags.length-1].setAttribute("loop", "true");
-}
-audiotags[0].setAttribute("src", "sounds/323800__reacthor__blood-drone.mp3")
-//audiotags[1].setAttribute("src", "sounds/sound.mp3");
-audiotags[2].setAttribute("src", "sounds/89953__greg-baumont__oberheimxpanderrandomdrone.mp3");
-//audiotags[3].setAttribute("src", "sounds/sound.mp3");
-audiotags[4].setAttribute("src", "sounds/324395__felipejordani__004-alien-machine-ii.mp3");
-//audiotags[5].setAttribute("src", "sounds/sound.mp3");
-
-let audiodiv = document.querySelector("#audiodiv");
-for(let i=0; i<audiotags.length; i++) {
-	audiodiv.appendChild(audiotags[i]);
-}
-
-document.body.addEventListener('touchend', () => {
-	for(let i=0; i<audiotags.length; i++) {
-		audiotags[i].volume = 0;
-		audiotags[i].play();
-		audiotags[i].volume = 0;
-	}
-});
-
-for(let i=0; i<audiotags.length; i++) {
-	fadeFunctions.push((audiotag, targetVal, duration) => {
-		let interval = 100;
-		let inc = (targetVal - audiotag.volume) / (duration / interval)
-		console.log(audiotag.volume + " -> " + targetVal + " " + inc);
-		if(inc == 0) return;
-		let fade = setInterval(() => {
-			if(Math.abs(audiotag.volume - targetVal) > Math.abs(inc)) {
-				audiotag.volume += inc;
-				//console.log(audiotag.volume);
-			}
-
-			if(Math.abs(audiotag.volume - targetVal) < Math.abs(inc)) {
-				audiotag.volume = targetVal;
-				clearInterval(fade);
-			}
-
-		}, interval);
-	});
-}
-
-const changeSounds = (label) => {
-
-	switch (label) {
-		case 'Still':
-			for(let i=0; i<audiotags.length; i++) {
-				if(i == 0) {
-					fadeFunctions[i](audiotags[i], 1, 2000);
-				} else {
-					fadeFunctions[i](audiotags[i], 0, 2000);
-				}
-			}
-			break;
-
-		case 'Walk':
-			for(let i=0; i<audiotags.length; i++) {
-				if(i == 2) {
-					fadeFunctions[i](audiotags[i], 1, 2000);
-				} else {
-					fadeFunctions[i](audiotags[i], 0, 2000);
-				}
-			}
-			break;
-
-		case 'Run':
-			for(let i=0; i<audiotags.length; i++) {
-				if(i == 4) {
-					fadeFunctions[i](audiotags[i], 1, 2000);
-				} else {
-					fadeFunctions[i](audiotags[i], 0, 2000);
-				}
-			}
-			break;
-
-		default:
-			break;
-	}
-}
-//*/
-
 // =================== the Web Audio way ================== //
 
 //*
@@ -123,6 +95,7 @@ let context = new AudioContext();
 let touched = false;
 let loaded = 0;
 
+/*
 document.body.addEventListener('touchend', () => {
 	if(touched || loaded < 3) return;
 	touched = true;
@@ -156,11 +129,9 @@ const loadSound = (url, index, trig) => {
 	req.send();
 }
 
-//loadSound("sounds/44652__simondsouza__hip-hop-groove.mp3", 0, () => { loaded++; });
 loadSound("sounds/bubulle_harmo.mp3", 0, () => { loaded++; });
 loadSound("sounds/marchesynth_duck.mp3", 1, () => { loaded++; });
 loadSound("sounds/tex01-23_cartoon_loop.mp3", 2, () => { loaded++; });
-//*/
 
 const changeSounds = (label) => {
 
@@ -200,8 +171,21 @@ const changeSounds = (label) => {
 			break;
 	}
 }
+//*/
+
+const changeSounds = (label) => {};
 
 // ===================== lfop graph ==================== //
+
+const eventIn = new lfo.sources.EventIn({
+	//relative: true,
+	frameSize: this.params.inputFrameSize,
+	ctx: AudioContext
+});
+
+const intensity = new Intensity({
+
+});
 
 const inputChain = new InputProcessingChain({
 	windowSize: 64,
@@ -217,7 +201,7 @@ const gmmDecoder = new XmmGmmDecoder({
 });
 
 const featuresBpf = new lfo.sinks.Bpf({
-	radius: 5,
+	radius: 1,
 	min: 0,
 	max: 1,
 	canvas: document.querySelector('#features-canvas'),
@@ -247,7 +231,7 @@ const likelihoodsSpectro = new lfo.sinks.Spectrogram({
 
 //*
 const likelihoodsBpf = new lfo.sinks.Bpf({
-	radius: 5,
+	radius: 1,
 	min: 0,
 	max: 1,
 	canvas: document.querySelector('#likelihoods-canvas'),
@@ -255,6 +239,8 @@ const likelihoodsBpf = new lfo.sinks.Bpf({
 	colors: ['#f00', '#0c0', '#33f'] // magnitude : Red, frequency : Green, periodicity : Blue
 });
 //*/
+
+//intensity.connect(inputChain)
 
 inputChain.connect(dataRecorder);
 
@@ -286,9 +272,21 @@ const feedInputChain = (module) => {
 		//*/
 
 		//*
+		motionInput.addListener('acceleration', (val) => {
+			inputChain.process(performance.now(), val);
+		});
+		//*/
+
+		//*
 		motionInput.addListener('rotationRate', (val) => {
 			//here compute the equivalent of "spin" :
-			let spin = Math.pow(val[0]*val[0] + val[1]*val[1] + val[2]*val[2], 0.5) * 0.003;
+			let valStd = val.slice(0);
+			if(rads) {
+				for(let i=0; i<3; i++) {
+					valStd[i] *= (180/Math.PI);
+				}
+			}
+			let spin = Math.pow(valStd[0]*valStd[0] + valStd[1]*valStd[1] + valStd[2]*valStd[2], 0.5) * 0.003;
 			inputChain.process(performance.now(), spin);
 		});
 		//*/

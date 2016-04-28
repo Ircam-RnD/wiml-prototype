@@ -1,4 +1,4 @@
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 
 export default class DataRecorder extends lfo.sinks.DataRecorder {
 

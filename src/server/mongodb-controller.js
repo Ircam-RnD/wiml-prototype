@@ -40,8 +40,12 @@ export default class MongoDBController {
 		this.childProcess.tell(message);
 	}
 
-	trainModels(dbName, srcCollName, dstCollName, args) {
-		return this.childProcess.trainModels(dbName, srcCollName, dstCollName, args);
+	configureModels(modelType, args) {
+		return this.childProcess.configureModels(modelType, args);
+	}
+
+	trainModels(modelType, dbName, srcCollName, dstCollName) {
+		return this.childProcess.trainModels(modelType, dbName, srcCollName, dstCollName);
 	}
 
 	getModels(dbName, collName) {

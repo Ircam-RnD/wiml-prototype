@@ -12,31 +12,13 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "xmm.h"
+#include "xmmServerToolBase.h"
 
-class gmmServerTool {
-
-    xmm::TrainingSet set;
-    //xmm::Phrase phrase;
-    xmm::GMM gmm;
+class gmmServerTool : public xmmServerTool<xmm::GMM> {
     
 public:
     gmmServerTool() {};
     ~gmmServerTool() {};
-    
-    //void buildTrainingSet(std::vector<std::string> labels);
-    void addToTrainingSet(std::vector<std::string> phrases);
-    void clearTrainingSet();
-    
-    void setNbGaussians(std::size_t n);
-    void setRegularization(double rel, double abs);
-    
-    void train();
-    
-    Json::Value toJson();
-    std::string toString();
-    //std::vector<double> getLikelihoods(std::vector<double> chunk);
-    
 };
 
 #endif /* gmmServerTool_hpp */
