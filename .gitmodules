@@ -1,0 +1,3 @@
+[submodule "ml-tools/dependencies/xmm"]
+	path = ml-tools/dependencies/xmm
+	url = https://github.com/JulesFrancoise/xmm
