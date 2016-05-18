@@ -9,9 +9,10 @@
 #include "hhmmServerTool.hpp"
 
 void
-hhmmServerTool::setNbStates(unsigned int nbStates) {
+hhmmServerTool::setNbStates(std::size_t nbStates) {
     if(nbStates > 0) {
-        model.configuration.states = nbStates;
+        model.configuration.states.set(nbStates, 1);
         model.configuration.changed = true;
     }
+    //std::cout << model.configuration.states.get() << std::endl;
 }

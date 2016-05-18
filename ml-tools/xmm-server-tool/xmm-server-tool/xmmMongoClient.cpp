@@ -85,6 +85,8 @@ xmmMongoClient::wait()
 
 #else
 
+// NOT USED ANYMORE ?
+/*
 std::vector<std::string>
 xmmMongoClient::task(XmmMongoTaskE t, std::vector<std::string> args)
 {
@@ -118,19 +120,78 @@ xmmMongoClient::task(XmmMongoTaskE t, std::vector<std::string> args)
 
     return res;
 }
+*/
 
 #endif
 
 std::vector<std::string>
 xmmMongoClient::fetchPhrases(std::string db, std::string coll, std::vector<std::string> labels, std::vector<std::string> colnames)
 {
+    
+//================= working perfectly
+    Json::Value jquery;
+    Json::Value jsubquery;
+    Json::Value labs;
+    Json::Value inlabs;
+    Json::Value lnames(Json::arrayValue);
+    if(labels.size() > 0) {
+        for(int i=0; i<labels.size(); i++) {
+            lnames[i] = labels[i];
+        }
+        inlabs["$in"] = lnames;
+        jsubquery["label"] = inlabs;
+    }
+    
+    Json::Value allcols;
+    Json::Value cnames(Json::arrayValue);
+    for(int i=0; i<colnames.size(); i++) {
+        cnames[i] = colnames[i];
+    }
+    allcols["$all"] = cnames;
+    jsubquery["column_names"] = allcols;
+    
+    jquery["$query"] = jsubquery;
+    
+    Json::FastWriter fw;
+    std::string squery = fw.write(jquery);
+    
+//================ working but not flexible
+//    query = BCON_NEW ("$query", "{",
+//                      //"label", BCON_UTF8("Walk"),
+//                      "column_names", "{", "$all", "[", BCON_UTF8("magnitude"), BCON_UTF8("frequency"), BCON_UTF8("periodicity"), "]", "}",
+//                      "}");
+
+//================= not working
+//    bson_t *subdoc;
+//    bson_t *subdoc2;
+//    bson_t *array;
+//    bson_t *query;
+//    
+//    bson_init(query);
+//
+//    BSON_APPEND_DOCUMENT_BEGIN(query, "$query", subdoc);
+//    BSON_APPEND_DOCUMENT_BEGIN(subdoc, "column_names", subdoc2);
+//    BSON_APPEND_ARRAY_BEGIN(subdoc2, "$all", array);
+//    for(int i=0; i<colnames.size(); i++) {
+//        BSON_APPEND_UTF8(array, std::to_string(i).c_str(), colnames[i].c_str());
+//    }
+//    bson_append_array_end(subdoc2, array);
+//    bson_append_document_end(subdoc2, subdoc);
+//    bson_append_document_end(query, subdoc);
+    
     std::vector<std::string> res;
     
     collection = mongoc_client_get_collection(client, db.c_str(), coll.c_str());
-    query = BCON_NEW ("$query", "{",
-                      //"label", BCON_UTF8("Walk"),
-                      "column_names", "{", "$all", "[", BCON_UTF8("magnitude"), BCON_UTF8("frequency"), BCON_UTF8("periodicity"), "]", "}",
-                      "}");
+    
+    bson_error_t error;
+    const char *json = squery.c_str();
+    query = bson_new_from_json((const uint8_t *)json, -1, &error);
+    
+    if(!query) {
+        std::cerr << error.message << std::endl;
+        res.push_back(error.message);
+        return res;
+    }
     
     cursor = mongoc_collection_find(collection, MONGOC_QUERY_NONE, 0, 0, 0, query, NULL, NULL);
     

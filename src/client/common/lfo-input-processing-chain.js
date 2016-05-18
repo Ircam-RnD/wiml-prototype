@@ -44,7 +44,7 @@ export default class InputProcessingChain extends lfo.core.BaseLfo {
 			inputFrameSize: 1,
 			windowSize: 128,
 			hopSize: 64,
-			outputRate: 50,	
+			//outputRate: 50,	
 			period: 20
 		};
 		super(defaults, options);

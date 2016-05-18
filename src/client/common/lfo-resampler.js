@@ -36,13 +36,13 @@ export default class Resampler extends lfo.core.BaseLfo {
 
 	constructor(options = {}) {
 		const defaults = {
-			frameSize: 1,
+			//frameSize: 1,
 			period: 20
 		};
 		super(defaults, options);
 
 		this.streamParams.sourceSampleRate = 1000 / this.params.period;
-		this.streamParams.frameSize = this.params.frameSize;
+		//this.streamParams.frameSize = this.params.frameSize;
 		this.streamParams.frameRate = 1000 / this.params.period;
 
 		//this.frameRate = 1000 / this.params.period;
@@ -82,8 +82,11 @@ export default class Resampler extends lfo.core.BaseLfo {
 		});
 	}
 
-	initialize() {
-		super.initialize();
+	initialize(streamParams = {}) {
+		//this.streamParams.frameSize
+		super.initialize(streamParams, {
+			sourceSampleRate: this.streamParams.sourceSampleRate
+		});
 		this.start();
 	}
 

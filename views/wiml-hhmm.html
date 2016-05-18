@@ -1,0 +1,93 @@
+<!-- in case we want to use audio html tag instead of webaudio -->
+
+<div id="audiodiv">
+</div>
+
+<!--
+<div class="clear-div">
+<input type="checkbox" id="soundmute" />
+</div>
+-->
+
+<div class="clear-div">
+<button id="rec-but" class="rec-but">
+REC
+</button>
+</div>
+
+<div class="clear-div">
+<label id="lblSelect">
+<select id="move-list" class="select">
+	<option id="still">Half-turn</option>
+	<option id="shuffle">Go-low</option>
+	<option id="walk">Jump</option>
+	<option id="run">Kata1</option>
+	<option id="hop">Kata2</option>
+	<option id="stagger">Kata3</option>
+	<option id="ninja">Kata4</option>
+</select>
+</label>
+</div>
+
+<div class="clear-div">
+<button id="send-but" class="simple-but">
+SEND PHRASE
+</button>
+</div>
+
+<!--
+<div class="clear-div">
+<button type="button" id="train-but" class="simple-but">
+TRAIN MODELS
+</button>
+</div>
+-->
+
+<div class="clear-div">
+<button id="getmodels-but" class="simple-but">
+UPDATE MODELS
+</button>
+</div>
+
+<div class="clear-div" id="likeliest-label-div">
+</div>
+
+<!-- ============================================== -->
+
+<div class="clear-div">
+<canvas id="rawinput-canvas"></canvas>
+</div>
+
+<div class="clear-div">
+<canvas id="likelihoods-canvas"></canvas>
+</div>
+
+<div class="clear-div">
+<canvas id="states-canvas"></canvas>
+</div>
+
+<!-- ============================================== -->
+
+<div class="clear-div">
+<form action="/wiml-hhmm-admin" method="get">
+<button class="simple-but">
+GO TO ADMIN
+</button>
+</form>
+</div>
+
+<!--
+<div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+-->
+
+<!--
+<script src="js/feed.js"></script>
+-->
+
+<script src="js/<%= clientType %>.js"></script>

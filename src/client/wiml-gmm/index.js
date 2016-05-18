@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import motionInput from 'motion-input';
 import * as lfo from 'waves-lfo';
 
+//import Select from '../common/lfo-select';
 import Intensity from '../common/lfo-intensity';
 import InputProcessingChain from '../common/lfo-input-processing-chain';
 import DataRecorder from '../common/lfo-data-recorder';
@@ -179,7 +180,7 @@ const changeSounds = (label) => {};
 
 const eventIn = new lfo.sources.EventIn({
 	//relative: true,
-	frameSize: this.params.inputFrameSize,
+	frameSize: 1,//this.params.inputFrameSize,
 	ctx: AudioContext
 });
 
@@ -188,19 +189,26 @@ const intensity = new Intensity({
 });
 
 const inputChain = new InputProcessingChain({
+	// windowSize: 64,
+	// hopSize: 16,
+	// frameSize: 64,
+	// period: 20
 	windowSize: 64,
 	hopSize: 16,
 	frameSize: 64,
 	period: 20
 });
 const dataRecorder = new DataRecorder({
-	separateArrays: true
+	//separateArrays: true,
+	//frameSize: 3, // <=> dimension
+	column_names: ['magnitude', 'frequency', 'periodicity']
 });
 const gmmDecoder = new XmmGmmDecoder({
-	likelihoodWindow: 2
+	likelihoodWindow: 5
 });
 
 const featuresBpf = new lfo.sinks.Bpf({
+	//frameSize: 3,
 	radius: 1,
 	min: 0,
 	max: 1,
@@ -210,7 +218,7 @@ const featuresBpf = new lfo.sinks.Bpf({
 });
 
 const signalBpf = new lfo.sinks.Bpf({
-	frameSize: 1,
+	//frameSize: 1,
 	radius: 0,
 	min: 0,
 	max: 1,
@@ -219,7 +227,7 @@ const signalBpf = new lfo.sinks.Bpf({
 	colors: ['#000'] // magnitude : Red, frequency : Green, periodicity : Blue
 });
 
-/*
+//*
 // temporarily unavailable ...
 const likelihoodsSpectro = new lfo.sinks.Spectrogram({
 //const likelihoodsSpectro = new MySpectrogram({
@@ -229,7 +237,7 @@ const likelihoodsSpectro = new lfo.sinks.Spectrogram({
 });
 //*/
 
-//*
+/*
 const likelihoodsBpf = new lfo.sinks.Bpf({
 	radius: 1,
 	min: 0,
@@ -249,8 +257,8 @@ inputChain.connect(gmmDecoder);
 inputChain.preFramerConnect(signalBpf);
 inputChain.connect(featuresBpf);
 
-//gmmDecoder.connect(likelihoodsSpectro);
-gmmDecoder.connect(likelihoodsBpf);
+gmmDecoder.connect(likelihoodsSpectro);
+//gmmDecoder.connect(likelihoodsBpf);
 
 // GO !
 inputChain.start();
@@ -271,7 +279,7 @@ const feedInputChain = (module) => {
 		});
 		//*/
 
-		//*
+		/*
 		motionInput.addListener('acceleration', (val) => {
 			inputChain.process(performance.now(), val);
 		});
@@ -311,7 +319,7 @@ const feedInputChain = (module) => {
 // ================= socket operations ================== //
 
 //let socket = io.connect('http://169.254.68.117:3000');
-let socket = io.connect(location.host + '/wiml-client');
+let socket = io.connect(location.host + '/wiml-gmm');
 //let socket = io.connect('127.0.0.1:3000');
 
 socket.on('confirm', (message) => {
@@ -371,6 +379,7 @@ sendbut.addEventListener('click', () => {
 		phrase.label = move;
 		phrase.date = new Date();
 		socket.emit('writePhrase', phrase);
+		console.log(phrase);
 		sendbut.disabled = true;
 	} else {
 		sendbut.disabled = false;

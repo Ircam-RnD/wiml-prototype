@@ -103,8 +103,10 @@ export default class XmmChildProcess {
 				//let response = trim.split(' ');
 				let response = data.replace('\n', '').split(' ');
 				if(response.length === 4 && response[0] === 'train' && response[2] === '--sender' && response[3] === this.parentid) {
-					// console.log('ok');
+					console.log('ok');
 					resolve(response[1]);
+				} else {
+					console.log('pas ok');
 				}
 			});
 

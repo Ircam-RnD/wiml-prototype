@@ -137,7 +137,8 @@ public:
     int work();
     int wait();
 #else
-    std::vector<std::string> task(XmmMongoTaskE t, std::vector<std::string> args = std::vector<std::string>(0));
+    // NOT USED ANYMORE ?
+    //std::vector<std::string> task(XmmMongoTaskE t, std::vector<std::string> args = std::vector<std::string>(0));
     std::vector<std::string> fetchPhrases(std::string db, std::string srcColl,
                                           std::vector<std::string> labels = std::vector<std::string>(0),
                                           std::vector<std::string> colnames = std::vector<std::string>(0));

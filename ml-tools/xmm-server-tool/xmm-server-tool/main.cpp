@@ -40,23 +40,26 @@ class xmmServerDriver {
     xmmMongoClient mongoClient;
     gmmServerTool gmmTool;
     hhmmServerTool hhmmTool;
-    unsigned int nbGaussians;
-    unsigned int nbStates;
+    std::size_t nbGaussians;
+    std::size_t nbStates;
 
 public:
     
     xmmServerDriver() {
         mongoClient.connect();
-        nbGaussians = 3;
-        nbStates    = 10;
+        //nbGaussians = 3;
+        //nbStates    = 10;
     }
     
     ~xmmServerDriver() {
         mongoClient.close();
     };
     
-    XmmOperationResultE configureModels(XmmModelTypeE model, unsigned int nbGaussians, unsigned int nbStates,
+    XmmOperationResultE configureModels(XmmModelTypeE model, std::size_t nbGaussians, std::size_t nbStates,
                          double relReg, double absReg) {
+        
+        //this->nbGaussians = nbGaussians;
+        //this->nbStates = nbStates;
         
         xmmServerToolBase *tool;
         switch(model) {
@@ -97,7 +100,7 @@ public:
                 break;
                 
             case XmmHhmm:
-                hhmmTool.setNbStates(nbStates);
+                //hhmmTool.setNbStates(nbStates);
                 tool = &hhmmTool;
                 break;
                 
@@ -105,6 +108,7 @@ public:
                 return XmmTrainProblem;
                 //break;
         }
+        //tool->setNbGaussians(nbGaussians);
         tool->clearTrainingSet();
         tool->addToTrainingSet(phrases);
         tool->train();
@@ -128,7 +132,16 @@ public:
                 return;
         }
         
-        std::vector<std::string> phrases = mongoClient.task(XmmMongoGet);
+        std::vector<std::string> cn;
+        cn.push_back(std::string("magnitude"));
+        cn.push_back(std::string("frequency"));
+        cn.push_back(std::string("periodicity"));
+        std::vector<std::string> labs;
+        labs.push_back(std::string("Run"));
+        std::vector<std::string> phrases = mongoClient.fetchPhrases(std::string("wimldb"), std::string("gmmPhrases"), labs, cn);
+        if(phrases.size() == 0) {
+            return;
+        }
         
         tool->clearTrainingSet();
         tool->addToTrainingSet(phrases);
@@ -204,13 +217,16 @@ int main(int argc, char * argv[]) {
     
     std::string input;
     xmmServerDriver driver;
-    
-    driver.configureModels(XmmHhmm, 1, 10, 0.01, 0.00001);
+
+    //*
+    // train and print JSON model :
+    driver.configureModels(XmmHhmm, 1, 5, 0.01, 0.00001);
     std::vector<std::string> labels = {"Still", "Run", "Walk"};
     std::vector<std::string> colnames = {"magnitude", "frequency", "periodicity"};
-    driver.trainModels(XmmHhmm, "wimldb", "phrases", "hhmmModels", labels, colnames);
+    driver.trainModels(XmmHhmm, "wimldb", "gmmPhrases", "gmmModels", labels, colnames);
     driver.printModels(XmmHhmm);
-
+    //*/
+    
     //std::cout << "xmm-server-tool has been launched\n" << std::endl;
     
     for(;;) {
@@ -227,7 +243,7 @@ int main(int argc, char * argv[]) {
             
             //============== route commands + deal with  options / arguments ============//
             
-            // MANDATORY params  : dbName srcCollName dstCollName
+            // MANDATORY params  : modelType dbName srcCollName dstCollName
             // MANDATORY options : --labels --colnames --sender
 
             //-------------------------------------------------------------//
@@ -366,6 +382,8 @@ int main(int argc, char * argv[]) {
             //std::cout << "received message " << input << " on stdin" << std::endl;
         }
     }
+    
+    sleep(100);
 
     return EXIT_SUCCESS;
 }

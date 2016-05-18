@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import lfo from 'waves-lfo';
+import * as lfo from 'waves-lfo';
 
 //window.location.href = window.location.pathname + window.location.search;
 
@@ -43,7 +43,7 @@ const checkCookie = () => {
 // let clearphrasesbut = document.querySelector('#clearphrases-but');
 let clearallbut = document.querySelector('#clearall-but');
 
-let socket = io.connect(location.host + '/wiml-admin');
+let socket = io.connect(location.host + '/wiml-hhmm-admin');
 
 // clearmodelsbut.addEventListener('click', () => {
 // 	socket.emit('clearModels');
@@ -113,19 +113,20 @@ socket.on('phrases', (phrases) => {
 
 		const bpf = new lfo.sinks.Bpf({
 			trigger: true,
-			radius: 5,
+			radius: 1,
 			frameSize: p[i].dimension,
 			min: 0,
 			max: 1,
 			canvas: document.querySelector('#phrase-' + i),
 			duration: 1000 * (p[i].data.length - p[i].dimension),
-			colors: ['#f00', '#0c0', '#33f'] // magnitude : R, frequency : G, periodicity : B
+			colors: ['#f00', '#0c0', '#33f', '#333', '#333', '#333'] // magnitude : R, frequency : G, periodicity : B
 		})
 
 		evin.connect(framer);
 		framer.connect(bpf);
 
-		//evin.initialize({ frameSize: 1, frameRate: 1000 });
+		//evin.initialize({ frameSize: p[i].dimension });
+		//evin.initialize({ frameSize: 6, frameRate: 1000 });
 		//framer.initialize({ frameSize: p[i].dimension });
 		evin.start();
 

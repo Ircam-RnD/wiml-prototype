@@ -44,8 +44,8 @@ export default class MongoDBController {
 		return this.childProcess.configureModels(modelType, args);
 	}
 
-	trainModels(modelType, dbName, srcCollName, dstCollName) {
-		return this.childProcess.trainModels(modelType, dbName, srcCollName, dstCollName);
+	trainModels(modelType, dbName, srcCollName, dstCollName, args) {
+		return this.childProcess.trainModels(modelType, dbName, srcCollName, dstCollName, args);
 	}
 
 	getModels(dbName, collName) {
@@ -121,10 +121,10 @@ export default class MongoDBController {
 		});	
 	}
 
-	printPhrases(label = '') {
+	printPhrases(label = 'Still', phrases = 'gmmPhrases') {
 		mongoClient.connect(this.fullUrl + 'wimldb', (err, db) => {
 			//console.log('connected to mongodb');
-			let cursor = db.collection('phrases').find();
+			let cursor = db.collection('gmmPhrases').find();
 			cursor.each((err, doc) => {
 				assert.equal(null, err);
 				if(doc != null) {

@@ -39,8 +39,8 @@ export default class Delta extends lfo.core.BaseLfo {
 		this.ringIndex = 0;
 	}
 
-	initialize(inStreamParams = {}, outStreamParams = {}) {
-		super.initialize(inStreamParams, outStreamParams);
+	initialize(streamParams = {}) {
+		super.initialize(streamParams);
 		this.params.frameSize = this.streamParams.frameSize;
 		this.ringBuffer = new Float32Array(this.params.order * this.params.frameSize);
 	}

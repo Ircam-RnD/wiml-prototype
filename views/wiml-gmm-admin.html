@@ -1,0 +1,45 @@
+<div class="canvas-legend">
+<form method="post" enctype="multipart/form-data" action="/wiml-gmm-admin">
+   <input type="file" name="phrase" required="true"/>
+   <br/>
+   <input type="submit"/>
+</form>
+</div>
+<br/>
+
+<div class="phrases-div">
+</div>
+
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+
+<div class="clear-div">
+<button id="clearall-but" class="simple-but">
+CLEAR ALL
+</button>
+</div>
+
+<!--
+
+<div class="clear-div">
+<button id="clearmodels-but" class="simple-but">
+CLEAR MODELS
+</button>
+</div>
+
+<div class="clear-div">
+<button id="clearphrases-but" class="simple-but">
+CLEAR PHRASES
+</button>
+</div>
+
+-->
+
+<div class="clear-div">
+<form action="/wiml-gmm" method="get">
+<button class="simple-but">
+GO TO CLIENT
+</button>
+</form>
+</div>
+
+<script src="js/<%= clientType %>.js"></script>

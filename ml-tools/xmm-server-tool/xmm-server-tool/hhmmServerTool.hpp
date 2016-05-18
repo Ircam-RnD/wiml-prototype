@@ -20,7 +20,7 @@ public:
     hhmmServerTool() {};
     ~hhmmServerTool() {};
     
-    void setNbStates(unsigned int nbStates);
+    void setNbStates(std::size_t nbStates);
 };
 
 #endif /* hhmmServerTool_hpp */
