@@ -4,11 +4,10 @@
 
 ## Requirements :
 
-- Clone this repository
+- Clone this repository (using the `--recursive` option to include submodules)
 - Install NodeJS
 - Install [MongoDB](https://docs.mongodb.org/manual/installation/)
 - Clone [mongo-c-driver](https://github.com/mongodb/mongo-c-driver)
-- Clone Jules Françoise's [XMM lib](https://github.com/JulesFrancoise/xmm)
 
 ## Compilation & Installation :
 
@@ -23,9 +22,9 @@ Type `npm run mongo` from the project's root folder to start the server and mong
 (does the same as `mongod --dbpath ./data/db` then `npm run watch`, but automatically kills mongod when killing node with `CTRL-C`)
 
 From a smartphone or any other similar device equipped with sensors, visit :  
-`http://YOUR.IP.ADDRESS.HERE:3000/wiml-client`  
+`http://YOUR.IP.ADDRESS.HERE:3000/wiml-gmm` or `http://YOUR.IP.ADDRESS.HERE:3000/wiml-hhmm`  
 You can now record phrases (sensor data time series), send them to the database tagged with labels, and load the model trained with these phrases from the server in real-time
 
 ## Notes :
 
-Only tested with OSX 10.11 and Node v0.12 for now
+Only tested with OSX 10.11 for now  
