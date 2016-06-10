@@ -78,6 +78,10 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 			this.forwardInit(frame);
 		}
 
+		// for(let i=0; i<this.modelResults.singleClassHmmModelResults.length; i++) {
+		// 		console.log(this.modelResults.singleClassHmmModelResults[i].alpha_h[0][0]);
+		// }
+
 		for(let i=0; i<this.model.models.length; i++) {
 			hmmUpdateAlphaWindow(this.model.models[i], this.modelResults.singleClassHmmModelResults[i]);
 			hmmUpdateResults(this.model.models[i], this.modelResults.singleClassHmmModelResults[i]);
@@ -105,20 +109,22 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 		// test if model is valid here (TODO : write a better test)
 		if(model.models !== undefined) {
 
+			console.log(model);
+
 			this.model = model;
 			let nmodels = model.models.length;
 
 			let nstatesGlobal = model.configuration.default_parameters.states;
 			this.params.frameSize = nstatesGlobal;
 
-			this.prior = new Array(nmodels);
-			this.exit_transition = new Array(nmodels);
-			this.transition = new Array(nmodels);
-			for(let i=0; i<nmodels; i++) {
-				this.transition[i] = new Array(nmodels);
-			}
-			this.frontier_v1 = new Array(nstatesGlobal);
-			this.frontier_v2 = new Array(nstatesGlobal);
+			// this.prior = new Array(nmodels);
+			// this.exit_transition = new Array(nmodels);
+			// this.transition = new Array(nmodels);
+			// for(let i=0; i<nmodels; i++) {
+			// 	this.transition[i] = new Array(nmodels);
+			// }
+			this.frontier_v1 = new Array(nmodels);
+			this.frontier_v2 = new Array(nmodels);
 			this.forward_initialized = false;
 			//this.results = {};
 
@@ -145,6 +151,9 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 				let alpha_h = new Array(3);
 				for(let j=0; j<3; j++) {
 					alpha_h[j] = new Array(nstates);
+					for(let k=0; k<nstates; k++) {
+						alpha_h[j][k] = 0;
+					}
 				}
 
 				let hmmRes = {
@@ -189,7 +198,8 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 
 		//this.streamParams.frameSize = this.model.models.length;
 		this.initialize({ frameSize: this.model.models.length });
-		console.log(this.streamParams.frameSize);
+		//console.log(this.streamParams.frameSize);
+		//console.log(this.modelResults);
 	}
 
 	//============================ RESET ==============================//
@@ -258,13 +268,15 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 		let tmp = 0;
 		let front; // array
 
+		let nmodels = this.model.models.length;
+	
 		hhmmLikelihoodAlpha(1, this.frontier_v1, this.model, this.modelResults);
 		hhmmLikelihoodAlpha(2, this.frontier_v2, this.model, this.modelResults);
 
 		// let num_classes = 
 		// let dstModelIndex = 0;
 
-		for(let i=0; i<this.model.models.length; i++) {
+		for(let i=0; i<nmodels; i++) {
 
 			let m = this.model.models[i];
 			let nstates = m.parameters.states;
@@ -284,22 +296,22 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 									(1 - m.exitProbabilities[j]) *
 									mRes.alpha_h[0][j];
 					}
-					for(let srci=0; srci<nstates; srci++) {
+					for(let srci=0; srci<nmodels; srci++) {
 						front[k] += mRes.prior[k] *
 									(
-										this.frontier_v1[srci] * this.transition[srci][i] +
-										this.prior[i] * this.frontier_v2[srci]
+										this.frontier_v1[srci] * this.model.transition[srci][i] +
+										this.model.prior[i] * this.frontier_v2[srci]
 									);
 					}
 				}
 			} else { //////////////////////////////////////////////////// left-right
 
 				// k == 0 : first state of the primitive
-				front[0] = mRes.transition[0] * mRes.alpha_h[0][0];
+				front[0] = m.transition[0] * mRes.alpha_h[0][0];
 
 				for(let srci=0; srci<this.model.models.length; srci++) {
-					front[0] += this.frontier_v1[srci] * this.transition[srci][i] +
-								this.prior[i] * this.frontier_v2[srci];
+					front[0] += this.frontier_v1[srci] * this.model.transition[srci][i] +
+								this.model.prior[i] * this.frontier_v2[srci];
 				}
 
 				// k > 0 : rest of the primitive
@@ -319,6 +331,8 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 				}
 			}
 
+			//console.log(front);
+
 			//============== UPDATE FORWARD VARIABLE =============//
 
 			mRes.exit_likelihood = 0;
@@ -327,12 +341,14 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 			for(let k=0; k<nstates; k++) {
 				tmp = gmmLikelihood(observation, m.states[k], mRes.singleClassGmmModelResults[k]) * front[k];
 
-				mRes.alpha_h[2][k] = this.exit_transition[i] * m.exitProbabilities[k] * tmp;
-				mRes.alpha_h[1][k] = (1 - this.exit_transition[i]) * m.exitProbabilities[k] * tmp;
+				mRes.alpha_h[2][k] = this.model.exit_transition[i] * m.exitProbabilities[k] * tmp;
+				mRes.alpha_h[1][k] = (1 - this.model.exit_transition[i]) * m.exitProbabilities[k] * tmp;
 				mRes.alpha_h[0][k] = (1 - m.exitProbabilities[k]) * tmp;
 
 				mRes.exit_likelihood 	+= mRes.alpha_h[1][k] + mRes.alpha_h[2][k];
 				mRes.instant_likelihood += mRes.alpha_h[0][k] + mRes.alpha_h[1][k] + mRes.alpha_h[2][k];
+
+				norm_const += tmp;
 			}
 
 			mRes.exit_ratio = mRes.exit_likelihood / mRes.instant_likelihood;
@@ -340,7 +356,7 @@ export default class XmmHhmmDecoder extends lfo.core.BaseLfo {
 
 		//============== NORMALIZE ALPHA VARIABLES =============//
 
-		for(let i=0; i<this.model.models.length; i++) {
+		for(let i=0; i<nmodels; i++) {
 			for(let e=0; e<3; e++) {
 				for(let k=0; k<this.model.models[i].parameters.states; k++) {
 					this.modelResults.singleClassHmmModelResults[i].alpha_h[e][k] /= norm_const;

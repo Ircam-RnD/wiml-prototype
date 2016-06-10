@@ -48,7 +48,7 @@ export default class XmmChildProcess {
 	}
 
 	configureModels(modelType, args) {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			// build command line :
 			let configString = 'config' + ' ' + modelType;
 			if(args.gaussians !== undefined) {
@@ -64,23 +64,27 @@ export default class XmmChildProcess {
 				configString += ' --absolute_regularization ' + args.absoluteRegularization;
 			}
 			configString += ' --sender ' + this.parentid + '\n';
-
+			//console.log(configString);
+			
 			// send command line to xmm :
 			child.stdin.write(configString);
 
 			child.stdout.on('data', (data) => {
 				// listen for xmm confirmation messages
 				let response = data.replace('\n', '').split(' ');
-				if(response.length === 4 && response[0] === 'config' && response[2] === '--sender' && response[3] === this.parentid) {
-					// console.log('ok');
-					resolve(response[1]);
+				//if(response.length === 4 && response[0] === 'config' && response[2] === '--sender' && response[3] === this.parentid) {
+				if(response[0] === 'config') {
+					if(response.length === 4 && response[1] === 'ok' && response[2] === '--sender' && response[3] === this.parentid) {
+						console.log('config ok : ' + data);
+						resolve(response[1]);
+					}
 				}
 			});
 		});
 	}
 
 	trainModels(modelType, dbName, srcCollName, dstCollName, args) {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			// build command line :
 			let i;
 			let trainString = 'train ' + modelType + ' ' + dbName + ' ' + srcCollName + ' ' + dstCollName ;
@@ -94,6 +98,8 @@ export default class XmmChildProcess {
 			}
 			trainString += '\n';
 
+			console.log(trainString);
+
 			// send command line to xmm :
 			child.stdin.write(trainString);
 
@@ -102,11 +108,14 @@ export default class XmmChildProcess {
 				//let trim = data.replace('\n', '');
 				//let response = trim.split(' ');
 				let response = data.replace('\n', '').split(' ');
-				if(response.length === 4 && response[0] === 'train' && response[2] === '--sender' && response[3] === this.parentid) {
-					console.log('ok');
-					resolve(response[1]);
-				} else {
-					console.log('pas ok');
+				//if(response.length === 4 && response[0] === 'train' && response[2] === '--sender' && response[3] === this.parentid) {
+				if(response[0] === 'train') {
+					if(response.length === 4 && response[1] === 'ok' && response[2] === '--sender' && response[3] === this.parentid) {
+						console.log('train ok : ' + data);
+						resolve(response[1]);
+					}
+				// } else {
+				// 	trainModels(modelType, dbName, srcCollName, dstCollName, args);
 				}
 			});
 

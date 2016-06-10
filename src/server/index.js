@@ -134,7 +134,7 @@ const nsp_client = io.of('/wiml-gmm');
 const trainingConfig = {
 	labels: ['Still', 'Shuffle', 'Walk', 'Run', 'Hop', 'Stagger', 'Ninja'],
 	column_names: ['magnitude', 'frequency', 'periodicity'],
-	gaussians: 1
+	//gaussians: 1
 };
 
 // instead of io.on('connection', function(client) { .. });
@@ -170,13 +170,14 @@ nsp_client.on('connection', (socket) => {
 	});
 
 	socket.on('trainModels', (data) => {
-		socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', trainingConfig)
-		.then((data => {
-			console.log(data);
+
+		socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', hhmmTrainingConfig)
+		.then((data) => {
+			console.log('train result : ' + data);
 			if(data === 'ok') {
 				socket.mongo.getModels('wimldb', 'gmmModels')
 				.then((data) => {
-					//console.log(data);
+					console.log(data);
 					socket.emit('models', { models: data, message: 'here are your models' });
 				})
 				.catch((err) => {
@@ -184,13 +185,84 @@ nsp_client.on('connection', (socket) => {
 				});
 			} else {
 				// xmm-server-tool return an error code
+				console.log(data);
 				socket.emit('models', { message: 'problem training models' });
 			}
-		}))
+		})
 		.catch((err) => {
+			console.log('training problem');
 			// if we arrive here that means that xmm-server-tool crashed
 			socket.emit('models', { message: 'xmm-server-tool seems to be down' });
 		});
+
+		// socket.mongo.configureModels('gmm', {
+		// 	gaussians: 2,
+		// 	relativeRegularization: 0.1,
+		// 	absoluteRegularization: 0.1
+		// })
+		// .then(socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', trainingConfig)
+		// .then((data) => { if(data === 'ok') return socket.mongo.getModels('wimldb', 'gmmModels'); })
+		// .then((data) => { socket.emit('models', { models: data, message: 'here are your models' }); });
+
+		/*
+		.then((data) => {
+			console.log(data + ' : now training');
+			return socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', trainingConfig)
+
+		//socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', trainingConfig)
+		.then((data) => {
+			if(data === 'ok') {
+				console.log('ok');
+				return socket.mongo.getModels('wimldb', 'gmmModels')
+
+		.then((data) => {
+			//console.log(data);
+			socket.emit('models', { models: data, message: 'here are your models' });
+		})
+		.catch((err) => {
+			socket.emit('models', { message: 'problem retrieving models' });
+		})
+		}
+		})});
+		*/
+		
+		/*
+		.then((data) => {
+			//console.log(data);
+			console.log('and now the training begins');
+			return socket.mongo.trainModels('gmm', 'wimldb', 'gmmPhrases', 'gmmModels', trainingConfig);
+		})
+			.then((data) => {
+				console.log(data);
+				if(data === 'ok') {
+					socket.mongo.getModels('wimldb', 'gmmModels')
+					.then((data) => {
+						//console.log(data);
+						socket.emit('models', { models: data, message: 'here are your models' });
+					})
+					.catch((err) => {
+						socket.emit('models', { message: 'problem retrieving models' });
+					});
+				} else {
+					// xmm-server-tool return an error code
+					socket.emit('models', { message: 'problem training models' });
+				}
+			})
+			.catch((err) => {
+				console.log(err.message);	
+			})
+		//})
+		.catch((err) => {
+			// if we arrive here that means that xmm-server-tool crashed
+			console.log(err.message);
+			socket.emit('models', { message: 'xmm-server-tool seems to be down' });
+		});
+		// })
+		// .catch((err) => {
+		// 	//console.log(err);
+		// });
+		*/
+
 	});
 
 });
@@ -202,7 +274,7 @@ const nsp_hhmm = io.of('/wiml-hhmm');
 const hhmmTrainingConfig = {
 	labels: ['Half-turn', 'Go-low', 'Jump', 'Kata1', 'Kata2', 'Kata3', 'Kata4'],
 	column_names: ['accelX', 'accelY', 'accelZ', 'rotX', 'rotY', 'rotZ'],
-	gaussians: 1
+	//gaussians: 1
 };
 
 // instead of io.on('connection', function(client) { .. });
@@ -230,7 +302,7 @@ nsp_hhmm.on('connection', (socket) => {
 
 	socket.on('writePhrase', (data) => {
 		console.log('client ' + socket.id + ' said : writePhrase !');
-		//console.log(data);
+		console.log(data);
 		socket.mongo.writeToDatabase('wimldb', 'hhmmPhrases', data);
 		for(let i=0; i<hhmmAdminSockets.length; i++) {
 			hhmmAdminSockets[i].refresh();
@@ -238,13 +310,26 @@ nsp_hhmm.on('connection', (socket) => {
 	});
 
 	socket.on('trainModels', (data) => {
+		// socket.mongo.configureModels('hhmm', {
+		// 	gaussians: 1,
+		// 	states: 5,
+		// 	relativeRegularization: 0.1,
+		// 	absoluteRegularization: 0.1
+		// })
+		// .then((data) => {
+		// 	console.log(data);
+		// })
+		// .catch((err) => {
+		// 	console.log(err);
+		// });
+
 		socket.mongo.trainModels('hhmm', 'wimldb', 'hhmmPhrases', 'hhmmModels', hhmmTrainingConfig)
-		.then((data => {
-			console.log(data);
+		.then((data) => {
+			console.log('train result : ' + data);
 			if(data === 'ok') {
 				socket.mongo.getModels('wimldb', 'hhmmModels')
 				.then((data) => {
-					//console.log(data);
+					console.log(data);
 					socket.emit('models', { models: data, message: 'here are your models' });
 				})
 				.catch((err) => {
@@ -255,8 +340,9 @@ nsp_hhmm.on('connection', (socket) => {
 				console.log(data);
 				socket.emit('models', { message: 'problem training models' });
 			}
-		}))
+		})
 		.catch((err) => {
+			console.log('training problem');
 			// if we arrive here that means that xmm-server-tool crashed
 			socket.emit('models', { message: 'xmm-server-tool seems to be down' });
 		});
@@ -386,7 +472,7 @@ nsp_hhmmadmin.on('connection', (socket) => {
 
 //mongodbController.trainModels('wimldb', 'phrases', 'models', trainingConfig);
 //mongodbController.printModels();
-//mongodbController.printPhrases('Run');
+//mongodbController.printPhrases('Kata1', 'hhmmPhrases');
 //mongodbController.printPhrases();
 //mongodbController.removePhrase('2016-02-29T16:05:35.017Z');
 //mongodbController.tellXmm('anything');

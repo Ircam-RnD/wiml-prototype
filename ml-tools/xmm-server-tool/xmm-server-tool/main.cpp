@@ -100,7 +100,6 @@ public:
                 break;
                 
             case XmmHhmm:
-                //hhmmTool.setNbStates(nbStates);
                 tool = &hhmmTool;
                 break;
                 
@@ -108,8 +107,10 @@ public:
                 return XmmTrainProblem;
                 //break;
         }
-        //tool->setNbGaussians(nbGaussians);
         tool->clearTrainingSet();
+//        for(int i=0; i<phrases.size(); i++) {
+//            std::cout << phrases[i] << std::endl;
+//        }
         tool->addToTrainingSet(phrases);
         tool->train();
         smodels = tool->toString();
@@ -131,22 +132,7 @@ public:
             default:
                 return;
         }
-        
-        std::vector<std::string> cn;
-        cn.push_back(std::string("magnitude"));
-        cn.push_back(std::string("frequency"));
-        cn.push_back(std::string("periodicity"));
-        std::vector<std::string> labs;
-        labs.push_back(std::string("Run"));
-        std::vector<std::string> phrases = mongoClient.fetchPhrases(std::string("wimldb"), std::string("gmmPhrases"), labs, cn);
-        if(phrases.size() == 0) {
-            return;
-        }
-        
-        tool->clearTrainingSet();
-        tool->addToTrainingSet(phrases);
-        tool->train();
-        
+                
         Json::StyledWriter sw;
         std::string smodels = sw.write(tool->toJson());
         std::cout << smodels << std::endl;
@@ -156,14 +142,14 @@ public:
     
     // TODO : remove (just here for test)
     std::string getLastPhrase() {
-        std::vector<std::string> cn;
-        cn.push_back(std::string("magnitude"));
-        cn.push_back(std::string("frequency"));
-        cn.push_back(std::string("periodicity"));
+        std::vector<std::string> cn = {"accelX", "accelY", "accelZ", "rotX", "rotY", "rotZ"};
+//        cn.push_back(std::string("magnitude"));
+//        cn.push_back(std::string("frequency"));
+//        cn.push_back(std::string("periodicity"));
         std::vector<std::string> labs;
-        labs.push_back(std::string("Run"));
+//        labs.push_back(std::string("Run"));
         
-        std::vector<std::string> phrases = mongoClient.fetchPhrases(std::string("wimldb"), std::string("phrases"), labs, cn);
+        std::vector<std::string> phrases = mongoClient.fetchPhrases(std::string("wimldb"), std::string("hhmmPhrases"), labs, cn);
         if(phrases.size() > 0) {
             std::cout << "ok" << std::endl;
             return phrases[phrases.size() - 1];
@@ -218,13 +204,22 @@ int main(int argc, char * argv[]) {
     std::string input;
     xmmServerDriver driver;
 
-    //*
+    /*
     // train and print JSON model :
-    driver.configureModels(XmmHhmm, 1, 5, 0.01, 0.00001);
+    driver.configureModels(XmmHhmm, 1, 5, 0.01, 0.01);
+    std::vector<std::string> labels = {"Kata1", "Kata2"};//{"Still", "Run", "Walk"};
+    std::vector<std::string> colnames = {"accelX", "accelY", "accelZ", "rotX", "rotY", "rotZ"};//{"magnitude", "frequency", "periodicity"};
+    driver.trainModels(XmmHhmm, "wimldb", "hhmmPhrases", "hhmmModels", labels, colnames);
+    driver.printModels(XmmHhmm);
+    //*/
+    driver.configureModels(XmmHhmm, 1, 5, 0.1, 0.1);
+    
+    /*
+    driver.configureModels(XmmGmm, 3, 12, 0.01, 0.01);
     std::vector<std::string> labels = {"Still", "Run", "Walk"};
     std::vector<std::string> colnames = {"magnitude", "frequency", "periodicity"};
-    driver.trainModels(XmmHhmm, "wimldb", "gmmPhrases", "gmmModels", labels, colnames);
-    driver.printModels(XmmHhmm);
+    driver.trainModels(XmmGmm, "wimldb", "gmmPhrases", "gmmModels", labels, colnames);
+    driver.printModels(XmmGmm);
     //*/
     
     //std::cout << "xmm-server-tool has been launched\n" << std::endl;
@@ -381,9 +376,9 @@ int main(int argc, char * argv[]) {
             
             //std::cout << "received message " << input << " on stdin" << std::endl;
         }
+        sleep(100);
+        
     }
     
-    sleep(100);
-
     return EXIT_SUCCESS;
 }

@@ -50,16 +50,27 @@ public:
                 throw std::runtime_error("Cannot Parse Json String");
             }
             //xp.fromString(phrases[i]);
+            /*
+            Json::Value jp2 = xp.toJson();
+            Json::StyledWriter w;
+            std::cout << w.write(jp2) << std::endl;
+            //*/
+            
+            // first set dimension and column names otherwise they will be reinitialized by "onAttributeChange"
+            if(i==0) {
+                set.dimension.set(xp.dimension.get());
+                set.column_names.set(xp.column_names, true);
+            }
             set.addPhrase(static_cast<int>(set.size()), xp);
         }
-        set.dimension.set(xp.dimension.get());
+        //set.dimension.set(xp.dimension.get());
         //std::cout << xp.column_names[0] << std::endl;
-        set.column_names.set(xp.column_names, true);
+        //set.column_names.set(xp.column_names, true);
         /*
-         Json::Value jset = set.toJson();
-         Json::StyledWriter w;
-         std::cout << w.write(jset) << std::endl;
-         //*/        
+        Json::Value jset = set.toJson();
+        Json::StyledWriter w;
+        std::cout << w.write(jset) << std::endl;
+        //*/        
     }
     
     virtual void clearTrainingSet() {

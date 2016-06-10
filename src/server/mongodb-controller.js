@@ -100,7 +100,7 @@ export default class MongoDBController {
 
 	printModels() {
 		mongoClient.connect(this.fullUrl + 'wimldb', (err, db) => {
-			let cursor = db.collection('models').find();
+			let cursor = db.collection('gmmModels').find();
 			cursor.each((err, doc) => {
 				assert.equal(null, err);
 				if(doc != null) {

@@ -44,7 +44,7 @@ export default class XmmGmmDecoder extends lfo.core.BaseLfo {
 
 		const outFrame = this.outFrame;
 
-		likelihoods(frame, this.model, this.modelResults);			
+		gmmLikelihoods(frame, this.model, this.modelResults);			
 		//gmmLikelihoods(frame, this.model, this.modelResults);			
 
 		for(let i=0; i<this.model.models.length; i++) {

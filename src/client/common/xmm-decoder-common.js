@@ -48,7 +48,7 @@ export const hmmUpdateResults = (singleClassHmmModel, singleClassHmmModelResults
 	let res = singleClassHmmModelResults;
 
 	// IS THIS CORRECT  ? CHECK !
-	res.likelihood_buffer.push(res.instant_likelihood);
+	res.likelihood_buffer.push(Math.log(res.instant_likelihood));
 	res.log_likelihood = 0;
 	let bufSize = res.likelihood_buffer.length;
 	for(let i=0; i<bufSize; i++) {
@@ -177,8 +177,8 @@ export const gmmLikelihoods = (observation, gmmModel, gmmModelResults) => {
 		singleRes.log_likelihood = singleRes.likelihood_buffer.reduce((a, b) => a + b, 0); // sum of all array values
 		singleRes.log_likelihood /= singleRes.likelihood_buffer.length;
 
-		res.instant_likelihoods[i] = singleResults.instant_likelihood;
-		res.smoothed_log_likelihoods[i] = singleResults.log_likelihood;
+		res.instant_likelihoods[i] = singleRes.instant_likelihood;
+		res.smoothed_log_likelihoods[i] = singleRes.log_likelihood;
 		res.smoothed_likelihoods[i] = Math.exp(res.smoothed_log_likelihoods[i]);
 		res.instant_normalized_likelihoods[i] = res.instant_likelihoods[i];
 		res.smoothed_normalized_likelihoods[i] = res.smoothed_likelihoods[i];
@@ -192,7 +192,7 @@ export const gmmLikelihoods = (observation, gmmModel, gmmModelResults) => {
 		}
 	}
 
-	for(let i=0; i<model.models.length; i++) {
+	for(let i=0; i<models.length; i++) {
 
 		res.instant_normalized_likelihoods[i] /= normConstInstant;
 		res.smoothed_normalized_likelihoods[i] /= normConstSmoothed;

@@ -76,7 +76,7 @@ const inputBpf = new lfo.sinks.Bpf({
 const likelihoodsSpectro = new lfo.sinks.Spectrogram({
 	scale: 1,
 	min: 0,
-	max: 1
+	max: 1,
 	canvas: document.querySelector('#likelihoods-canvas'),
 	duration: 1000,
 	color: '#333'

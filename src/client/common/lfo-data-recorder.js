@@ -11,7 +11,8 @@ export default class DataRecorder extends lfo.sinks.DataRecorder {
 		}
 		super(defaults, options);
 		if(options.column_names !== undefined) {
-			this.params.column_names = options.column_names.splice(0);
+			this.params.column_names = options.column_names.slice(0);
+			//console.log(this.params.column_names);
 		}
 
 		this.phrase = {};
@@ -22,7 +23,7 @@ export default class DataRecorder extends lfo.sinks.DataRecorder {
 			this.phrase.bimodal = this.params.bimodal;
 			this.phrase.dimension = this.streamParams.frameSize;
 			this.phrase.dimension_input = 0;
-			this.phrase.column_names = this.params.column_names.splice(0);
+			this.phrase.column_names = this.params.column_names.slice(0);
 			this.phrase.data = [];
 			for(let vecid in data.data) {
 				for(let id in data.data[vecid]) {
@@ -42,6 +43,7 @@ export default class DataRecorder extends lfo.sinks.DataRecorder {
 	}
 
 	getRecordedPhrase() {
+		console.log(this.params.column_names);
 		return this.phrase;
 	}
 }
